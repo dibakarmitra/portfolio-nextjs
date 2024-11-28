@@ -76,28 +76,28 @@ export default function RootLayout({
           title="JSON Feed"
         />
       </head>
-      <body className="antialiased min-h-screen">
+      <body className="antialiased min-h-screen bg-gradient-to-b from-white to-gray-50 dark:from-gray-950 dark:to-gray-900">
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
-          enableSystem
+          defaultTheme="dark"
+          enableSystem={false}
           disableTransitionOnChange
         >
           <div className="flex min-h-screen flex-col">
-            <header className="w-full print:hidden">
-              <div className="mx-auto max-w-[960px] px-6 sm:px-4 md:px-0">
+            <header className="sticky top-0 z-50 w-full backdrop-blur supports-[backdrop-filter]:bg-white/60 dark:supports-[backdrop-filter]:bg-gray-950/60 border-b border-gray-100 dark:border-gray-800/40">
+              <nav className="mx-auto max-w-5xl px-6 lg:px-8">
                 <Navbar />
-              </div>
+              </nav>
             </header>
-            
+
             <main className="flex-1 w-full">
-              <div className="mx-auto max-w-[960px] px-6 sm:px-4 md:px-0">
+              <div className="mx-auto max-w-5xl px-6 lg:px-8 py-16">
                 <MDXLayout>{children}</MDXLayout>
               </div>
             </main>
 
-            <footer className="w-full print:hidden">
-              <div className="mx-auto max-w-[960px] px-6 sm:px-4 md:px-0">
+            <footer className="w-full mt-auto border-t border-gray-100 dark:border-gray-800/40 bg-white/50 dark:bg-gray-950/50">
+              <div className="mx-auto max-w-5xl px-6 lg:px-8 py-12">
                 <Footer />
               </div>
             </footer>

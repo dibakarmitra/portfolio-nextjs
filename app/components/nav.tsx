@@ -17,9 +17,10 @@ const navItems: NavItem[] = [
 const NavLink = memo(({ path, name }: NavItem) => (
   <Link
     href={path}
-    className="transition-all hover:text-neutral-800 dark:hover:text-neutral-200 flex align-middle relative"
+    className="transition-all hover:text-neutral-800 dark:hover:text-neutral-200 flex align-middle relative group"
   >
     {name}
+    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-orange-500 group-hover:w-full transition-all duration-300"></span>
   </Link>
 ));
 NavLink.displayName = 'NavLink';
@@ -31,9 +32,10 @@ export const Navbar = memo(function Navbar() {
         <div className="flex items-center">
           <Link 
             href="/" 
-            className="text-md font-bold text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors"
+            className="text-md font-bold text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors group"
           >
             {metaData.title}
+            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-orange-500 group-hover:w-full transition-all duration-300"></span>
           </Link>
         </div>
         <div className="flex flex-row gap-4 mt-6 md:mt-0 md:ml-auto items-center">

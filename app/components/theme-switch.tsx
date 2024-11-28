@@ -31,9 +31,9 @@ export const ThemeSwitch: React.FC = () => {
       if (storedPreference) {
         return storedPreference as 'light' | 'dark';
       }
-      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      return 'dark';
     }
-    return 'light'; 
+    return 'dark'; 
   };
 
   const reflectPreference = (theme: 'light' | 'dark') => {
@@ -50,9 +50,7 @@ export const ThemeSwitch: React.FC = () => {
 
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
     const handleChange = () => {
-      const newTheme = mediaQuery.matches ? 'dark' : 'light';
-      localStorage.setItem(storageKey, newTheme);
-      reflectPreference(newTheme);
+      reflectPreference('dark');
     };
 
     mediaQuery.addEventListener('change', handleChange);
