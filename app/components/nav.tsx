@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { metaData } from "config/metadata";
 import { memo } from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { FiMenu, FiX } from 'react-icons/fi';
 
 interface NavItem {
@@ -22,53 +22,74 @@ const navItems: NavItem[] = [
 const NavLink = memo(({ path, name }: NavItem) => (
   <Link
     href={path}
-    className="transition-all hover:text-neutral-800 dark:hover:text-neutral-200 flex align-middle relative group py-2 md:py-0"
+    className="relative px-2 py-1 text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors duration-200 group"
   >
     {name}
-    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-orange-500 group-hover:w-full transition-all duration-300"></span>
+    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-orange-500 group-hover:w-full transition-all duration-300 ease-out"></span>
   </Link>
 ));
 NavLink.displayName = 'NavLink';
 
 export const Navbar = memo(function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
-    <nav className="relative">
-      <div className="flex items-center justify-between md:justify-start">
-        <Link 
-          href="/" 
-          className="text-md font-bold text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors group relative"
-        >
-          {metaData.title}
-          <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-orange-500 group-hover:w-full transition-all duration-300"></span>
-        </Link>
-        
-        {/* Mobile menu button */}
-        <button
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="md:hidden p-2 text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white"
-          aria-label="Toggle menu"
-        >
-          {isMenuOpen ? <FiX size={24} /> : <FiMenu size={24} />}
-        </button>
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      scrolled ? 'bg-white/80 dark:bg-gray-900/80 backdrop-blur-md shadow-sm' : 'bg-transparent'
+    }`}>
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16">
+          {/* Logo/Brand */}
+          <Link 
+            href="/" 
+            className="text-sm font-bold text-gray-800 dark:text-gray-200 hover:text-black dark:hover:text-white transition-colors group relative"
+          >
+            {metaData.title}
+            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-orange-500 group-hover:w-full transition-all duration-300"></span>
+          </Link>
+          
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center space-x-6">
+            {navItems.slice(1).map((item) => (
+              <NavLink key={item.path} {...item} />
+            ))}
+          </div>
 
-        {/* Desktop Navigation */}
-        <div className="hidden md:flex flex-row gap-6 ml-auto items-center">
-          {navItems.slice(1).map((item) => (
-            <NavLink key={item.path} {...item} />
-          ))}
+          {/* Mobile menu button */}
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="md:hidden p-2 rounded-lg text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200"
+            aria-label="Toggle menu"
+          >
+            {isMenuOpen ? <FiX size={20} /> : <FiMenu size={20} />}
+          </button>
+        </div>
+
+        {/* Mobile Navigation */}
+        <div className={`md:hidden transition-all duration-300 ease-in-out ${
+          isMenuOpen 
+            ? 'max-h-64 opacity-100 visible' 
+            : 'max-h-0 opacity-0 invisible'
+        }`}>
+          <div className="py-3 space-y-3">
+            {navItems.slice(1).map((item) => (
+              <div key={item.path} className="px-2">
+                <NavLink {...item} />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
-
-      {/* Mobile Navigation */}
-      {isMenuOpen && (
-        <div className="absolute top-full left-0 right-0 bg-white dark:bg-gray-900 shadow-lg rounded-b-lg mt-2 py-4 px-6 flex flex-col gap-4 md:hidden z-50">
-          {navItems.slice(1).map((item) => (
-            <NavLink key={item.path} {...item} />
-          ))}
-        </div>
-      )}
     </nav>
   );
 });
