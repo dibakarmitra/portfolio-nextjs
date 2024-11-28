@@ -6,7 +6,7 @@ import { Navbar } from "./components/nav";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import Footer from "./components/footer";
-import { ThemeProvider } from "./components/theme-switch";
+import { ThemeProvider, ThemeSwitch } from "./components/theme-switch";
 import { metaData } from "config/metadata";
 import MDXLayout from "./components/mdx-provider";
 
@@ -85,22 +85,24 @@ export default function RootLayout({
         >
           <div className="flex min-h-screen flex-col">
             <header className="sticky top-0 z-50 w-full backdrop-blur supports-[backdrop-filter]:bg-white/60 dark:supports-[backdrop-filter]:bg-gray-950/60 border-b border-gray-100 dark:border-gray-800/40">
-              <nav className="mx-auto max-w-5xl px-6 lg:px-8">
+              <nav className="mx-auto max-w-5xl px-6 py-4">
                 <Navbar />
               </nav>
             </header>
 
             <main className="flex-1 w-full">
-              <div className="mx-auto max-w-5xl px-6 lg:px-8 py-16">
+              <div className="mx-auto max-w-5xl px-6 py-20">
                 <MDXLayout>{children}</MDXLayout>
               </div>
             </main>
 
             <footer className="w-full mt-auto border-t border-gray-100 dark:border-gray-800/40 bg-white/50 dark:bg-gray-950/50">
-              <div className="mx-auto max-w-5xl px-6 lg:px-8 py-12">
+              <div className="mx-auto max-w-5xl px-6 py-16">
                 <Footer />
               </div>
             </footer>
+
+            <ThemeSwitch />
           </div>
           <Analytics />
           <SpeedInsights />

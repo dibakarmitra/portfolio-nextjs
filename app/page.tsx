@@ -7,9 +7,9 @@ import ContactForm from "./components/ContactForm";
 
 export default function Page() {
   return (
-    <div className="flex flex-col gap-16 py-8 dark:text-white">
+    <div className="flex flex-col space-y-24">
       {/* Hero Section */}
-      <section className="relative py-12 md:py-24">
+      <section className="relative pt-8 md:pt-12">
         <div className="flex flex-col-reverse md:flex-row items-center justify-between gap-8 md:gap-12">
           <div className="flex-1 space-y-6">
             <h1 className="text-4xl md:text-5xl font-bold">
@@ -47,7 +47,7 @@ export default function Page() {
       </section>
 
       {/* Skills Section */}
-      <section className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <section className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <SkillCard 
           title="DYNAMIC ANIMATION"
           subtitle="MOTION DESIGN"
@@ -60,9 +60,8 @@ export default function Page() {
         />
       </section>
 
-
       {/* Insights Section */}
-      <section className="relative py-12">
+      <section className="relative py-16">
         <div className="absolute inset-0 bg-orange-50 dark:bg-orange-950/10 -skew-y-3 transform"></div>
         <div className="relative grid grid-cols-1 md:grid-cols-3 gap-8 py-8">
           <div className="p-6 bg-white/50 dark:bg-gray-900/50 rounded-2xl backdrop-blur-sm hover:scale-105 transition-transform duration-300">
@@ -92,7 +91,7 @@ export default function Page() {
       </section>
 
       {/* Recent Projects */}
-      <section>
+      <section className="space-y-8">
         <h2 className="text-3xl font-bold mb-8">
           RECENT <span className="text-orange-500">PROJECTS</span>
         </h2>
@@ -116,7 +115,7 @@ export default function Page() {
       </section>
 
       {/* Experience */}
-      <section>
+      <section className="space-y-8">
         <h2 className="text-3xl font-bold mb-8">
           12 YEARS OF <span className="text-orange-500">EXPERIENCE</span>
         </h2>
@@ -140,7 +139,7 @@ export default function Page() {
       </section>
 
       {/* Premium Tools */}
-      <section>
+      <section className="space-y-8">
         <h2 className="text-3xl font-bold mb-8">
           PREMIUM <span className="text-orange-500">TOOLS</span>
         </h2>
@@ -157,7 +156,7 @@ export default function Page() {
       </section>
 
       {/* Design Thoughts */}
-      <section>
+      <section className="space-y-8">
         <h2 className="text-3xl font-bold mb-8">
           DESIGN <span className="text-orange-500">THOUGHTS</span>
         </h2>
@@ -178,7 +177,7 @@ export default function Page() {
       </section>
 
       {/* Contact Form */}
-      <section>
+      <section className="space-y-8 pb-16">
         <h2 className="text-3xl font-bold mb-8">
           LET'S WORK <span className="text-orange-500">TOGETHER</span>
         </h2>
