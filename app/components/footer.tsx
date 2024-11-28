@@ -28,7 +28,7 @@ function SocialLink({ href, icon: Icon }) {
 
 function SocialLinks() {
   return (
-    <div className="flex text-lg gap-3.5 float-right transition-opacity duration-300 hover:opacity-90">
+    <div className="flex items-center gap-3.5 transition-opacity duration-300 hover:opacity-90">
       <SocialLink href={socialLinks.twitter} icon={FaXTwitter} />
       <SocialLink href={socialLinks.github} icon={FaGithub} />
       <SocialLink href={socialLinks.instagram} icon={FaInstagram} />
@@ -47,25 +47,25 @@ function SocialLinks() {
 
 export default function Footer() {
   return (
-    <small className="block lg:mt-24 mt-16 mb-8 text-[#1C1C1C] dark:text-[#D4D4D4]">
-      <time> {YEAR}</time>{" "}
-      <a
-        className="no-underline hover:text-orange-500 dark:hover:text-orange-400 transition-colors"
-        href={socialLinks.twitter}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        {metaData.title}
-      </a>
-      <style jsx>{`
-        @media screen and (max-width: 480px) {
-          article {
-            padding-top: 2rem;
-            padding-bottom: 4rem;
-          }
-        }
-      `}</style>
-      <SocialLinks />
-    </small>
+    <div className="relative py-5">
+      <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="flex items-center">
+          <a
+            className="text-md font-bold text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors group relative"
+            href={socialLinks.twitter}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {metaData.title}
+            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-orange-500 group-hover:w-full transition-all duration-300"></span>
+          </a>
+          <span className="mx-2 text-gray-400">•</span>
+          <span className="text-gray-600 dark:text-gray-400">
+            &copy; {YEAR}
+          </span>
+        </div>
+        <SocialLinks />
+      </div>
+    </div>
   );
 }
