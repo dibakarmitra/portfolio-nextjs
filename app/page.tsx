@@ -58,6 +58,7 @@ export default function Page() {
             title={skill.title}
             subtitle={skill.subtitle}
             color={skill.color}
+            textColor={skill.textColor}
           />
         ))}
       </section>

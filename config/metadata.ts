@@ -1,7 +1,7 @@
 // /config/metadata.ts
 export const metaData = {
   title: "Dibakar Mitra",
-  jobTitle: "Senior Software Developer",
+  jobTitle: "Software Developer",
   description: "Professional portfolio of Dibakar Mitra, a skilled PHP Developer with expertise in Laravel, Django, and full-stack web development. Specializing in building robust web applications and APIs.",
   expertise: [
     "Senior Software Development",
@@ -23,27 +23,29 @@ export const metaData = {
   },
   skills: [
     {
-      title: "BACKEND DEVELOPMENT",
+      title: "Backend Development",
       subtitle: "PHP & PYTHON",
-      color: "bg-orange-500"
+      color: "bg-orange-500",
+      textColor: "text-gray-300 dark:text-gray-500"
     },
     {
-      title: "FRONTEND DEVELOPMENT",
+      title: "Frontend Development",
       subtitle: "REACT & NEXTJS",
-      color: "bg-lime-400"
+      color: "bg-lime-400",
+      textColor: "text-gray-300 dark:text-gray-500"
     }
   ],
   tools: [
     {
       name: "Laravel",
       icon: "🚀",
-      color: "bg-red-100 dark:bg-red-800/20",
+      color: "bg-red-50 dark:bg-red-900/20",
       textColor: "text-red-600 dark:text-red-400"
     },
     {
       name: "Django",
       icon: "🐍",
-      color: "bg-green-100 dark:bg-green-800/20",
+      color: "bg-green-50 dark:bg-green-900/20",
       textColor: "text-green-600 dark:text-green-400"
     },
     {
