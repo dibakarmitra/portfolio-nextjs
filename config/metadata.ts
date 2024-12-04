@@ -12,7 +12,26 @@ export const metaData = {
   ],
   currentCompany: "Wholewave Elements",
   previousCompany: "Taxolawgy Inc.",
-  projects: ["TalentPlace.ai", "Jobs.TalentPlace.ai"],
+  projects: [
+    {
+      title: "TalentPlace.ai",
+      description: "AI-powered resume builder and job portal",
+      image: "/projects/placeholder.svg",
+      url: "https://talentplace.ai"
+    },
+    {
+      title: "Jobs.TalentPlace.ai",
+      description: "AI-driven job matching platform",
+      image: "/projects/placeholder.svg",
+      url: "https://jobs.talentplace.ai"
+    },
+    {
+      title: "Portfolio",
+      description: "Personal Website",
+      image: "/projects/placeholder.svg",
+      url: "https://dibakarmitra.com"
+    }
+  ],
   baseUrl: "https://www.dibakarmitra.com",
   name: "Dibakar Mitra",
   ogImage: "/opengraph-image.png",

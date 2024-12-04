@@ -102,16 +102,13 @@ export default function Page() {
           {metaData.projects.map((project, index) => (
             <ProjectCard 
               key={index}
-              title={project}
-              description="Web Development"
+              title={project.title}
+              description={project.description}
               color={index % 2 === 0 ? "bg-orange-500" : "bg-lime-400"}
+              image={project.image}
+              url={project.url}
             />
           ))}
-          <ProjectCard 
-            title="Portfolio"
-            description="Personal Website"
-            color="bg-purple-500"
-          />
         </div>
       </section>
 
