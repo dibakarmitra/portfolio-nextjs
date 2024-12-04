@@ -67,7 +67,7 @@ export const metaData = {
     {
       name: "Git",
       icon: "📦",
-      color: "bg-gray-50 dark:bg-gray-800",
+      color: "bg-gray-100 dark:bg-gray-800",
       textColor: "text-gray-600 dark:text-gray-400"
     }
   ]

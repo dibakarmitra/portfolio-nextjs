@@ -31,7 +31,7 @@ const NavLink = memo(({ path, name }: NavItem) => {
   return (
     <LinkComponent
       href={path}
-      className={`relative px-2 py-1 text-sm font-medium transition-colors duration-200 group ${
+      className={`relative px-2 py-2 text-sm font-medium transition-colors duration-200 group ${
         isActive 
           ? 'text-black dark:text-white' 
           : 'text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white'
@@ -69,9 +69,12 @@ export const Navbar = memo(function Navbar() {
           {/* Logo/Brand */}
           <Link 
             href="/" 
-            className="text-sm font-bold text-gray-800 dark:text-gray-200 hover:text-black dark:hover:text-white transition-colors group relative"
+            className="text-sm font-bold text-gray-800 dark:text-gray-200 hover:text-black dark:hover:text-white transition-colors group relative flex items-center gap-2"
           >
-            {metaData.title}
+            <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-gradient-to-br from-orange-400 to-orange-600 text-white font-bold">
+              DM
+            </div>
+            <span className="hidden sm:inline-block">{metaData.title}</span>
             <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-orange-500 group-hover:w-full transition-all duration-300"></span>
           </Link>
           
