@@ -60,14 +60,14 @@ export const metaData = {
     {
       name: "Laravel",
       icon: "🚀",
-      color: "bg-red-50 dark:bg-red-900/20",
-      textColor: "text-red-600 dark:text-red-400"
+      color: "bg-orange-100 dark:bg-orange-800/20",
+      textColor: "text-orange-600 dark:text-orange-400"
     },
     {
       name: "Django",
       icon: "🐍",
-      color: "bg-green-50 dark:bg-green-900/20",
-      textColor: "text-green-600 dark:text-green-400"
+      color: "bg-gray-100 dark:bg-gray-800/20",
+      textColor: "text-gray-600 dark:text-gray-40"
     },
     {
       name: "React",

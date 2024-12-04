@@ -52,9 +52,9 @@ export default function Page() {
 
       {/* Skills Section */}
       <section className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <h2 className="sr-only text-3xl font-bold mb-8 col-span-full">
+        {/* <h2 className="text-3xl font-bold mb-8 col-span-full">
           CORE <span className="text-orange-500">SKILLS</span>
-        </h2>
+        </h2> */}
         {metaData.skills.map((skill, index) => (
           <SkillCard 
             key={index}
