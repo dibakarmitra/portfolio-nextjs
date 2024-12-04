@@ -37,37 +37,37 @@ export const metaData = {
     {
       name: "Laravel",
       icon: "🚀",
-      color: "bg-red-50 dark:bg-red-900/20",
+      color: "bg-red-100 dark:bg-red-800/20",
       textColor: "text-red-600 dark:text-red-400"
     },
     {
       name: "Django",
       icon: "🐍",
-      color: "bg-green-50 dark:bg-green-900/20",
+      color: "bg-green-100 dark:bg-green-800/20",
       textColor: "text-green-600 dark:text-green-400"
     },
     {
       name: "React",
       icon: "⚛️",
-      color: "bg-blue-50 dark:bg-blue-900/20",
+      color: "bg-blue-100 dark:bg-blue-800/20",
       textColor: "text-blue-600 dark:text-blue-400"
     },
     {
       name: "Next.js",
-      icon: "▲",
-      color: "bg-black/5 dark:bg-white/5",
+      icon: "🔥",
+      color: "bg-gray-100 dark:bg-gray-800/20",
       textColor: "text-black dark:text-white"
     },
     {
       name: "MySQL",
-      icon: "🗄️",
-      color: "bg-orange-50 dark:bg-orange-900/20",
+      icon: "📈",
+      color: "bg-orange-100 dark:bg-orange-800/20",
       textColor: "text-orange-600 dark:text-orange-400"
     },
     {
       name: "Git",
-      icon: "📦",
-      color: "bg-gray-100 dark:bg-gray-800",
+      icon: "🔀",
+      color: "bg-gray-100 dark:bg-gray-800/20",
       textColor: "text-gray-600 dark:text-gray-400"
     }
   ]
