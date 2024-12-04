@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
@@ -9,10 +9,67 @@ export default function ContactForm() {
     message: ''
   });
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<{
+    type: 'success' | 'error' | null;
+    message: string;
+    visible: boolean;
+  }>({ type: null, message: '', visible: false });
+
+  useEffect(() => {
+    let timer: NodeJS.Timeout;
+    
+    if (submitStatus.type === 'success' && submitStatus.visible) {
+      timer = setTimeout(() => {
+        setSubmitStatus(prev => ({ ...prev, visible: false }));
+      }, 3000);
+
+      const cleanupTimer = setTimeout(() => {
+        setSubmitStatus({ type: null, message: '', visible: false });
+      }, 3300); // Additional 300ms for fade out animation
+
+      return () => {
+        clearTimeout(timer);
+        clearTimeout(cleanupTimer);
+      };
+    }
+  }, [submitStatus.type, submitStatus.visible]);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: Implement form submission
-    console.log('Form submitted:', formData);
+    setIsSubmitting(true);
+    setSubmitStatus({ type: null, message: '', visible: false });
+
+    try {
+      const response = await fetch('/api/send', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setSubmitStatus({
+          type: 'success',
+          message: 'Thank you! Your message has been sent successfully.',
+          visible: true
+        });
+        setFormData({ name: '', email: '', message: '' });
+      } else {
+        throw new Error(data.error || 'Failed to send message');
+      }
+    } catch (error) {
+      setSubmitStatus({
+        type: 'error',
+        message: 'Sorry, something went wrong. Please try again later.',
+        visible: true
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -61,10 +118,24 @@ export default function ContactForm() {
       </div>
       <button
         type="submit"
-        className="w-full bg-orange-500 text-white font-bold py-3 px-6 rounded-lg hover:bg-orange-600 transition-colors"
+        disabled={isSubmitting}
+        className="w-full bg-orange-500 text-white font-bold py-3 px-6 rounded-lg hover:bg-orange-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
       >
-        Send Message
+        {isSubmitting ? 'Sending...' : 'Send Message'}
       </button>
+      {submitStatus.type && submitStatus.visible && (
+        <div 
+          className={`mt-4 p-4 rounded-lg transition-opacity duration-300 ${
+            submitStatus.visible ? 'opacity-100' : 'opacity-0'
+          } ${
+            submitStatus.type === 'success' 
+              ? 'bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-100' 
+              : 'bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-100'
+          }`}
+        >
+          {submitStatus.message}
+        </div>
+      )}
     </form>
   );
 }

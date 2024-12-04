@@ -33,6 +33,7 @@
     "react-youtube": "^10.1.0",
     "rehype-katex": "^7.0.1",
     "remark-math": "^6.0.0",
+    "resend": "^4.0.1",
     "sugar-high": "^0.7.0",
     "tailwind-merge": "^2.5.5",
     "typescript": "5.5.4"
