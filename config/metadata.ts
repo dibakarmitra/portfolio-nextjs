@@ -52,6 +52,8 @@ export const metaData = {
       subtitle: "REACT & NEXTJS",
       color: "bg-lime-400",
       textColor: "text-gray-300 dark:text-gray-500"
+      // color: "bg-gray-800 dark:bg-gray-800",
+      // textColor: "text-gray-100 dark:text-gray-100"
     }
   ],
   tools: [
