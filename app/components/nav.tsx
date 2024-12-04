@@ -5,6 +5,7 @@ import { metaData } from "config/metadata";
 import { memo } from 'react';
 import { useState, useEffect } from 'react';
 import { FiMenu, FiX } from 'react-icons/fi';
+import { usePathname } from 'next/navigation';
 
 interface NavItem {
   name: string;
@@ -16,18 +17,34 @@ const navItems: NavItem[] = [
   { path: "/projects", name: "Projects" },
   { path: "/notes", name: "Notes" },
   { path: "/photos", name: "Photos" },
-  { path: "/resume.pdf", name: "Resume" },
+  { path: "/resume", name: "Resume" },
 ];
 
-const NavLink = memo(({ path, name }: NavItem) => (
-  <Link
-    href={path}
-    className="relative px-2 py-1 text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors duration-200 group"
-  >
-    {name}
-    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-orange-500 group-hover:w-full transition-all duration-300 ease-out"></span>
-  </Link>
-));
+const NavLink = memo(({ path, name }: NavItem) => {
+  const pathname = usePathname();
+  const isActive = pathname === path || (path !== '/' && pathname?.startsWith(path));
+  const isExternal = path.startsWith('http');
+
+  const LinkComponent = isExternal ? 'a' : Link;
+  const externalProps = isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {};
+
+  return (
+    <LinkComponent
+      href={path}
+      className={`relative px-2 py-1 text-sm font-medium transition-colors duration-200 group ${
+        isActive 
+          ? 'text-black dark:text-white' 
+          : 'text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white'
+      }`}
+      {...externalProps}
+    >
+      {name}
+      <span className={`absolute bottom-0 left-0 h-0.5 bg-orange-500 transition-all duration-300 ease-out ${
+        isActive ? 'w-full' : 'w-0 group-hover:w-full'
+      }`}></span>
+    </LinkComponent>
+  );
+});
 NavLink.displayName = 'NavLink';
 
 export const Navbar = memo(function Navbar() {
