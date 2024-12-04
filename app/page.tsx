@@ -52,6 +52,9 @@ export default function Page() {
 
       {/* Skills Section */}
       <section className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <h2 className="sr-only text-3xl font-bold mb-8 col-span-full">
+          CORE <span className="text-orange-500">SKILLS</span>
+        </h2>
         {metaData.skills.map((skill, index) => (
           <SkillCard 
             key={index}
@@ -63,7 +66,7 @@ export default function Page() {
         ))}
       </section>
 
-      {/* Insights Section */}
+      {/* About/Stats Section */}
       <section className="relative py-16">
         <div className="absolute inset-0 bg-orange-50 dark:bg-orange-950/30 -skew-y-3 transform"></div>
         <div className="relative grid grid-cols-1 md:grid-cols-3 gap-8 py-8">
@@ -93,26 +96,7 @@ export default function Page() {
         </div>
       </section>
 
-      {/* Recent Projects */}
-      <section className="space-y-8">
-        <h2 className="text-3xl font-bold mb-8">
-          RECENT <span className="text-orange-500">PROJECTS</span>
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {metaData.projects.map((project, index) => (
-            <ProjectCard 
-              key={index}
-              title={project.title}
-              description={project.description}
-              color={index % 2 === 0 ? "bg-orange-500" : "bg-lime-400"}
-              image={project.image}
-              url={project.url}
-            />
-          ))}
-        </div>
-      </section>
-
-      {/* Experience */}
+      {/* Experience Section */}
       <section className="space-y-8">
         <h2 className="text-3xl font-bold mb-8">
           {metaData.stats.yearsOfExperience} YEARS OF <span className="text-orange-500">EXPERIENCE</span>
@@ -135,10 +119,29 @@ export default function Page() {
         </div>
       </section>
 
-      {/* Tools Section */}
+      {/* Featured Projects */}
       <section className="space-y-8">
         <h2 className="text-3xl font-bold mb-8">
-          DEVELOPMENT <span className="text-orange-500">TOOLS</span>
+          FEATURED <span className="text-orange-500">PROJECTS</span>
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {metaData.projects.map((project, index) => (
+            <ProjectCard 
+              key={index}
+              title={project.title}
+              description={project.description}
+              color={index % 2 === 0 ? "bg-orange-500" : "bg-lime-400"}
+              image={project.image}
+              url={project.url}
+            />
+          ))}
+        </div>
+      </section>
+
+      {/* Tools & Technologies */}
+      <section className="space-y-8">
+        <h2 className="text-3xl font-bold mb-8">
+          TOOLS & <span className="text-orange-500">TECHNOLOGIES</span>
         </h2>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
           {metaData.tools.map((tool) => (
@@ -157,7 +160,7 @@ export default function Page() {
         </div>
       </section>
 
-      {/* Contact Form */}
+      {/* Contact Section */}
       <ContactForm />
     </div>
   );
