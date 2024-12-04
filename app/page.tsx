@@ -68,7 +68,7 @@ export default function Page() {
 
       {/* About/Stats Section */}
       <section className="relative py-16">
-        <div className="absolute inset-0 bg-orange-50 dark:bg-orange-950/30 -skew-y-3 transform"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-orange-50/90 to-orange-100/50 dark:from-gray-900/30 dark:to-orange-900/10 -skew-y-3 transform"></div>
         <div className="relative grid grid-cols-1 md:grid-cols-3 gap-8 py-8">
           <div className="p-6 bg-white/50 dark:bg-gray-900/50 rounded-2xl backdrop-blur-sm hover:scale-105 transition-transform duration-300">
             <div className="flex flex-col items-center text-center space-y-2">
