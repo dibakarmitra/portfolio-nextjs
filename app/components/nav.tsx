@@ -6,7 +6,6 @@ import { memo } from 'react';
 import { useState, useEffect } from 'react';
 import { FiMenu, FiX } from 'react-icons/fi';
 import { usePathname } from 'next/navigation';
-import Logo from './Logo';
 
 interface NavItem {
   name: string;
@@ -72,8 +71,14 @@ export const Navbar = memo(function Navbar() {
             href="/" 
             className="text-sm font-bold text-gray-800 dark:text-gray-200 hover:text-black dark:hover:text-white transition-colors group relative flex items-center gap-3"
           >
-            <Logo />
-            <span className="hidden sm:inline-block relative group-hover:translate-x-1 transition-transform duration-300">
+            <div className="relative">
+              <span className="text-xl font-bold tracking-tighter">
+                <span className="text-black dark:text-white group-hover:text-orange-500 transition-colors duration-300">d</span>
+                <span className="text-orange-500">m</span>
+              </span>
+              <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-orange-500 transform origin-left group-hover:scale-x-110 transition-transform duration-300"></span>
+            </div>
+            <span className="hidden relative group-hover:translate-x-1 transition-transform duration-300">
               {metaData.title}
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-orange-500 group-hover:w-full transition-all duration-300"></span>
             </span>
