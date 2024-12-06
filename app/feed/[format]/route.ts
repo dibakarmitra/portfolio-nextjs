@@ -1,5 +1,5 @@
 import { Feed } from "feed";
-import { getBlogPosts } from "app/lib/posts";
+import { getNotePosts } from "../../../lib/posts";
 import { metaData } from "../../../config/metadata";
 import { NextResponse } from "next/server";
 
@@ -45,7 +45,7 @@ export async function GET(
     },
   });
 
-  const allPosts = await getBlogPosts();
+  const allPosts = await getNotePosts();
 
   allPosts.forEach((post) => {
     const postUrl = `${BaseUrl}blog/${post.slug}`;
