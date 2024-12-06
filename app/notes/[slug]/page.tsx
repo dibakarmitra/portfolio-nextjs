@@ -34,8 +34,7 @@ export async function generateMetadata({
       title,
       description: excerpt,
       type: "article",
-      // Convert the date to ISO string format
-      publishedTime: new Date(date).toISOString(),  // Date converted to string (ISO format)
+      publishedTime: date.toISOString(),
       url: `${metaData.baseUrl}/notes/${post.slug}`,
       images: [
         {
@@ -62,7 +61,7 @@ export default function Blog({ params }: { params: { slug: string } }) {
   return (
     <NoteLayout
       title={post.metadata.title}
-      date={post.metadata.date.toDateString()}
+      date={formatDate(post.metadata.date)}
       tags={post.metadata.tags}
     >
       <script
@@ -73,9 +72,8 @@ export default function Blog({ params }: { params: { slug: string } }) {
             "@context": "https://schema.org",
             "@type": "NotePosting",
             headline: post.metadata.title,
-            // Convert the date to ISO string format
-            datePublished: new Date(post.metadata.date).toISOString(),  // Date converted to string (ISO format)
-            dateModified: new Date(post.metadata.date).toISOString(),  // Date converted to string (ISO format)
+            datePublished: post.metadata.date.toISOString(),
+            dateModified: post.metadata.date.toISOString(),
             description: post.metadata.excerpt,
             image: post.metadata.image
               ? `${metaData.baseUrl}${post.metadata.image}`
@@ -91,4 +89,8 @@ export default function Blog({ params }: { params: { slug: string } }) {
       <MDXRemote source={post.content} />
     </NoteLayout>
   );
+}
+
+function formatDate(date: Date) {
+  return date.toDateString();
 }

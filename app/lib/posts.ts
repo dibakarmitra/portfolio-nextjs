@@ -31,10 +31,11 @@ function readMDXFile(filePath: string): NotePost {
     metadata: {
       baseUrl: data.baseUrl,
       title: data.title,
-      date: data.date,
+      date: new Date(data.date),
       excerpt: data.excerpt,
       tags: data.tags || [],
       image: data.image,
+      publishedAt: data.publishedAt ? new Date(data.publishedAt) : undefined,
     },
     content,
   };
