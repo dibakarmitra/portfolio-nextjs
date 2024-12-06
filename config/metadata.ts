@@ -97,7 +97,7 @@ export const metaData = {
 };
 
 export const socialLinks = {
-  twitter: "https://x.com/dibakarmitra",
+  twitter: "https://x.com/_mitradibakar",
   github: "https://github.com/dibakarmitra",
   instagram: "https://www.instagram.com/dibakarmitra",
   linkedin: "https://www.linkedin.com/in/dibakarmitra",
