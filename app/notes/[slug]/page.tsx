@@ -34,7 +34,8 @@ export async function generateMetadata({
       title,
       description: excerpt,
       type: "article",
-      publishedTime: date,
+      // Convert the date to ISO string format
+      publishedTime: new Date(date).toISOString(),  // Date converted to string (ISO format)
       url: `${metaData.baseUrl}/notes/${post.slug}`,
       images: [
         {
@@ -61,7 +62,7 @@ export default function Blog({ params }: { params: { slug: string } }) {
   return (
     <NoteLayout
       title={post.metadata.title}
-      date={post.metadata.date}
+      date={post.metadata.date.toDateString()}
       tags={post.metadata.tags}
     >
       <script
@@ -72,8 +73,9 @@ export default function Blog({ params }: { params: { slug: string } }) {
             "@context": "https://schema.org",
             "@type": "NotePosting",
             headline: post.metadata.title,
-            datePublished: post.metadata.date,
-            dateModified: post.metadata.date,
+            // Convert the date to ISO string format
+            datePublished: new Date(post.metadata.date).toISOString(),  // Date converted to string (ISO format)
+            dateModified: new Date(post.metadata.date).toISOString(),  // Date converted to string (ISO format)
             description: post.metadata.excerpt,
             image: post.metadata.image
               ? `${metaData.baseUrl}${post.metadata.image}`

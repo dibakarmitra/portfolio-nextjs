@@ -1,6 +1,7 @@
 export const metaData = {
   title: 'Dibakar Mitra',
   author: 'Dibakar Mitra',
+  baseUrl: 'https://dibakarmitra.vercel.app',
   description: 'Personal portfolio and blog',
   language: 'en-us',
   siteUrl: 'https://dibakarmitra.vercel.app',

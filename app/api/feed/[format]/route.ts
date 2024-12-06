@@ -1,5 +1,5 @@
 import { Feed } from "feed";
-import { getNotePosts } from "app/lib/posts";
+import { getNotePosts } from "../../../lib/posts";
 import { metaData } from "config/metadata";
 import { NextResponse } from "next/server";
 
@@ -41,20 +41,27 @@ export async function GET(
 
   allPosts.forEach((post) => {
     const postUrl = `${BaseUrl}blog/${post.slug}`;
-    const categories = post.metadata.tags
-      ? post.metadata.tags.map((tag) => tag.trim())
-      : [];
+    const categories = post.metadata.tags || [];
 
     feed.addItem({
       title: post.metadata.title,
       id: postUrl,
       link: postUrl,
       description: post.metadata.excerpt,
+      content: post.content,
+      author: [
+        {
+          name: metaData.author,
+          email: metaData.email,
+          link: metaData.siteUrl,
+        },
+      ],
+      contributor: [],
       category: categories.map((tag) => ({
         name: tag,
-        term: tag,
+        term: tag, // Optional: Use if you need additional metadata.
       })),
-      date: new Date(post.metadata.date),
+      date: post.metadata.publishedAt ? new Date(post.metadata.publishedAt) : new Date(),
     });
   });
 

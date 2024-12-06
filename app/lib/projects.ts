@@ -7,6 +7,7 @@ export interface Project {
   featured?: boolean;
   date?: string;
   image?: string;
+  sourceUrl?: string;
 }
 
 export function getProjects(): Project[] {

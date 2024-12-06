@@ -44,7 +44,7 @@ export default function NotesPage({ searchParams }: { searchParams: { page?: str
             <div className="group cursor-pointer bg-gray-50 dark:bg-gray-800 rounded-xl p-6 h-full hover:scale-[1.02] transition-all">
               <div className="flex flex-col h-full">
                 <div className="text-sm text-gray-600 dark:text-gray-400 mb-3">
-                  {formatDate(post.metadata.date)}
+                  {formatDate(post.metadata.date.toDateString())}
                 </div>
                 <h3 className="text-xl font-bold mb-3 group-hover:text-orange-500 transition-colors">
                   {post.metadata.title}

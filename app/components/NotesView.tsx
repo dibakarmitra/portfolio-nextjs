@@ -3,8 +3,8 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { FaThLarge, FaList } from "react-icons/fa";
-import type { NotePost } from "app/lib/notes";
-import { formatDate } from "app/lib/utils";
+import type { NotePost } from "app/lib/posts";
+import { formatDate } from "app/lib/formatDate";
 
 interface NotesViewProps {
   posts: NotePost[];
@@ -57,7 +57,7 @@ export default function NotesView({ posts }: NotesViewProps) {
                 
                 <div className="p-6 space-y-4">
                   <div className="text-sm text-orange-500 dark:text-orange-400 font-medium">
-                    {formatDate(post.metadata.date)}
+                  {formatDate( post.metadata.date instanceof Date ? post.metadata.date.toISOString() : post.metadata.date)}
                   </div>
                   
                   <h2 className="text-xl font-bold text-gray-900 dark:text-white group-hover:text-orange-500 transition-colors">
@@ -110,7 +110,8 @@ export default function NotesView({ posts }: NotesViewProps) {
                         </h2>
                         
                         <div className="text-sm text-orange-500 dark:text-orange-400 font-medium mb-3">
-                          {formatDate(post.metadata.date)}
+                          {formatDate( post.metadata.date instanceof Date ? post.metadata.date.toISOString() : post.metadata.date)}
+              
                         </div>
                         
                         <p className="text-gray-600 dark:text-gray-400 mb-4">

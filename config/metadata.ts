@@ -1,5 +1,11 @@
 // /config/metadata.ts
 export const metaData = {
+  email: "dibakarmitra10@gmail.com",
+  github: "https://github.com/dibakarmitra",
+  twitter: "https://twitter.com/dibakarmitra",
+  linkedin: "https://linkedin.com/in/dibakarmitra",
+  author: "Dibakar Mitra",
+  siteUrl: "https://www.dibakarmitra.com",
   title: "Dibakar Mitra - Software Developer",
   jobTitle: "Software Developer",
   description: "Professional portfolio of Dibakar Mitra, a skilled PHP Developer with expertise in Laravel, Django, and full-stack web development. Specializing in building robust web applications and APIs.",

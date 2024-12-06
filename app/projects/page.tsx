@@ -1,24 +1,12 @@
 // /app/projects/page.tsx
 import { getProjects } from "app/lib/projects";
-import type { Project } from "app/lib/projects";
+import type { Project } from "app/lib/projects"; // This import should work correctly now
 import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
 
 export const metadata = {
   title: "Projects",
   description: "Showcase of my latest works and side projects",
 };
-
-interface Project {
-  title: string;
-  description: string;
-  image?: string;
-  link?: string;
-  tags: string[];
-  date?: string;
-  skills: string[];
-  githubUrl: string;
-  demoUrl?: string;
-}
 
 function formatDate(date: string) {
   return new Date(date).toLocaleDateString('en-US', {

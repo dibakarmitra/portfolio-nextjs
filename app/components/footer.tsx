@@ -13,7 +13,13 @@ import { metaData, socialLinks } from "config/metadata";
 
 const YEAR = new Date().getFullYear();
 
-function SocialLink({ href, icon: Icon }) {
+// Define types for the props
+interface SocialLinkProps {
+  href: string;
+  icon: React.ComponentType<React.SVGProps<SVGSVGElement> & { size?: number }>;
+}
+
+function SocialLink({ href, icon: Icon }: SocialLinkProps) {
   return (
     <a 
       href={href} 

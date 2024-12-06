@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { formatDate } from '../lib/formatDate';
-import type { Note } from '../lib/types';
+import type { NotePost as Note } from '../lib/notes';
 
 export default function NoteList({ posts }: { posts: Note[] }) {
   return (

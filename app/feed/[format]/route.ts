@@ -1,8 +1,9 @@
 import { Feed } from "feed";
-import { getNotePosts } from "../../../lib/posts";
+import { getNotePosts } from "../../../app/lib/posts";
 import { metaData } from "../../../config/metadata";
 import { NextResponse } from "next/server";
 
+// Generate static paths for feed formats
 export async function generateStaticParams() {
   return [
     { format: "rss.xml" },
@@ -11,6 +12,7 @@ export async function generateStaticParams() {
   ];
 }
 
+// Handle GET request for feeds
 export async function GET(
   _: Request,
   { params }: { params: { format: string } }
@@ -18,6 +20,7 @@ export async function GET(
   const { format } = params;
   const validFormats = ["rss.xml", "atom.xml", "feed.json"];
 
+  // Check if format is valid
   if (!validFormats.includes(format)) {
     return NextResponse.json(
       { error: "Unsupported feed format" },
@@ -25,10 +28,12 @@ export async function GET(
     );
   }
 
-  const BaseUrl = metaData.baseUrl.endsWith("/")
-    ? metaData.baseUrl
-    : `${metaData.baseUrl}/`;
+  // Base URL for the site
+  const BaseUrl = metaData.siteUrl.endsWith("/")
+    ? metaData.siteUrl
+    : `${metaData.siteUrl}/`;
 
+  // Initialize the feed
   const feed = new Feed({
     title: metaData.title,
     description: metaData.description,
@@ -45,12 +50,14 @@ export async function GET(
     },
   });
 
+  // Fetch all posts
   const allPosts = await getNotePosts();
 
+  // Add posts to the feed
   allPosts.forEach((post) => {
     const postUrl = `${BaseUrl}blog/${post.slug}`;
-    const categories = post.metadata.tags
-      ? post.metadata.tags.split(",").map((tag) => tag.trim())
+    const categories = Array.isArray(post.metadata.tags)
+      ? post.metadata.tags.map((tag) => tag.trim())
       : [];
 
     feed.addItem({
@@ -62,10 +69,11 @@ export async function GET(
         name: tag,
         term: tag,
       })),
-      date: new Date(post.metadata.publishedAt),
+      date: new Date(post.metadata.publishedAt || Date.now()),
     });
   });
 
+  // Map feed formats to content types and generated content
   const responseMap: Record<string, { content: string; contentType: string }> =
     {
       "rss.xml": { content: feed.rss2(), contentType: "application/xml" },
@@ -73,6 +81,7 @@ export async function GET(
       "feed.json": { content: feed.json1(), contentType: "application/json" },
     };
 
+  // Generate response for the requested format
   const response = responseMap[format];
 
   return new NextResponse(response.content, {

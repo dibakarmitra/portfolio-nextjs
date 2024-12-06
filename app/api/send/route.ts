@@ -12,7 +12,7 @@ export async function POST(request: Request) {
       from: contactConfig.email.from,
       to: contactConfig.email.to,
       subject: contactConfig.email.subject(name),
-      reply_to: email,
+      replyTo: email,
       text: contactConfig.email.emailTemplate.text({ name, email, message }),
       html: contactConfig.email.emailTemplate.html({ name, email, message }),
     });

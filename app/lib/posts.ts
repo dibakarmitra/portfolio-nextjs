@@ -5,11 +5,14 @@ import matter from "gray-matter";
 export type NotePost = {
   slug: string;
   metadata: {
+    baseUrl: string;
     title: string;
-    date: string;
+    date: Date;
     excerpt: string;
     tags: string[];
     image?: string;
+    summary?: string;
+    publishedAt?: Date;
   };
   content: string;
 };
@@ -26,6 +29,7 @@ function readMDXFile(filePath: string): NotePost {
   return {
     slug,
     metadata: {
+      baseUrl: data.baseUrl,
       title: data.title,
       date: data.date,
       excerpt: data.excerpt,
