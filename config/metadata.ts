@@ -37,7 +37,7 @@ export const metaData = {
   ogImage: "/opengraph-image.png",
   stats: {
     yearsOfExperience: 5,
-    projectsCompleted: 20,
+    projectsCompleted: 10,
     clientSatisfaction: 100
   },
   skills: [
@@ -49,7 +49,7 @@ export const metaData = {
     },
     {
       title: "Frontend Development",
-      subtitle: "REACT & NEXTJS",
+      subtitle: "HTML & NEXTJS",
       color: "bg-lime-400",
       textColor: "text-gray-300 dark:text-gray-500"
       // color: "bg-gray-800 dark:bg-gray-800",
