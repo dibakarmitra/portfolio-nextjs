@@ -1,7 +1,7 @@
 // app/notes/page.tsx
 import { getNotePosts } from "app/lib/posts";
-import NoteList from "../components/note-list";
-import Pagination from "../components/pagination";
+import NoteList from "../../components/note-list";
+import Pagination from "../../components/pagination";
 import { notFound } from "next/navigation";
 
 export const metadata = {
