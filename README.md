@@ -1,6 +1,6 @@
 # Nextfolio - Modern Portfolio Template
 
-A clean, fast, and lightweight portfolio template built with Next.js 14, Vercel, and Tailwind CSS for optimal performance.
+A clean, fast, and lightweight portfolio template built with Next.js 14, Vercel, and Tailwind CSS for optimal performance and SEO.
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2F1msirius%2FNextfolio)
 
