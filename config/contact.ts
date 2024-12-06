@@ -1,7 +1,7 @@
 export const contactConfig = {
   email: {
-    from: "Dibakar Mitra <support@resend.dev>",
-    to: ["dibakarmitra07@gmail.com", "mitradibakar@outlook.com"],
+    from: "Dibakar Mitra <work@dibakarmitra.com>",
+    to: ["dibakarmitra07@gmail.com", "mitradibakar@outlook.com", "Dibakar Mitra <work@dibakarmitra.com>"],
     subject: (name: string) => `New Contact Form Submission from ${name}`,
     emailTemplate: {
       text: (data: { name: string; email: string; message: string }) => `
