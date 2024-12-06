@@ -1,9 +1,9 @@
 export const resumeData = {
   name: "Dibakar Mitra",
-  title: "Full Stack Developer",
+  title: "Software Developer",
   email: "dibakarmitra10@gmail.com",
   location: "Kolkata, India",
-  about: "Experienced Full Stack Developer with expertise in building scalable web applications and microservices. Passionate about clean code, performance optimization, and modern development practices.",
+  about: "Experienced Software Developer with expertise in building scalable web applications and microservices. Passionate about clean code, performance optimization, and modern development practices.",
   
   socialLinks: {
     github: "https://github.com/dibakarmitra",

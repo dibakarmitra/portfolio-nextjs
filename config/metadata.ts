@@ -1,6 +1,6 @@
 // /config/metadata.ts
 export const metaData = {
-  title: "Dibakar Mitra",
+  title: "Dibakar Mitra - Software Developer",
   jobTitle: "Software Developer",
   description: "Professional portfolio of Dibakar Mitra, a skilled PHP Developer with expertise in Laravel, Django, and full-stack web development. Specializing in building robust web applications and APIs.",
   expertise: [
