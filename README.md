@@ -1,62 +1,116 @@
-# Nextfolio
+# Nextfolio - Modern Portfolio Template
 
-A clean, fast, and lightweight portfolio template built with [Next.js](https://nextjs.org/), [Vercel](https://vercel.com/), and [Tailwind CSS](https://tailwindcss.com/) for optimal performance.
-
-Deploy your Nextfolio site with Vercel in minutes.
+A clean, fast, and lightweight portfolio template built with Next.js 14, Vercel, and Tailwind CSS for optimal performance.
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2F1msirius%2FNextfolio)
 
-## Technologies Used
-
-- Framework: [Next.js](https://nextjs.org/)
-- Typography: [Vercel Geist Font](https://vercel.com/font)
-- Styling: [Tailwind CSS](https://tailwindcss.com/)
-- Analytics: [Vercel Web Analytics](https://vercel.com/docs/speed-insights) and [Speed Insights](https://vercel.com/docs/speed-insights)
-- Deployment: [Vercel](https://vercel.com/)
-
 ## Features
 
-- **[MDX](https://mdxjs.com/) Support**: Use Markdown with JSX components for notes.
-- **Light and Dark Mode Toggle**: Switch between themes for better readability.
-- **Dynamic [OG Images](https://vercel.com/docs/functions/og-image-generation)**: Auto-generate Open Graph images for sharing.
-- **SEO Optimization**: Enhance search visibility with sitemap, robots.txt, and JSON-LD schema.
-- **Dynamic Feed Generation**: Automatic dynamic [RSS](https://nextfolio-template.vercel.app/rss.xml), [Atom](https://nextfolio-template.vercel.app/atom.xml), and [JSON](https://nextfolio-template.vercel.app/feed.json) feeds.
-- **[KaTeX](https://katex.org/) Integration**: Render mathematical expressions smoothly.
-- **Performance Tracking**: Monitor web performance with [Vercel Web Analytics](https://vercel.com/docs/speed-insights) and [Speed Insights](https://vercel.com/docs/speed-insights).
-- **Interactive Embeds**: Easily embed interactive tweets and YouTube videos.
-- **Captions**: Add descriptive captions to photos, tweets, and videos.
-- **Image Grid**: Easily showcase image galleries or photos.
+- ⚡️ Built with Next.js 14 and TypeScript
+- 🎨 Tailwind CSS for styling
+- 📱 Fully responsive design
+- 🌙 Dark mode support
+- 📝 MDX for blog posts
+- 📊 Vercel Analytics integration
+- 📈 Speed Insights
+- 🔍 SEO optimized
+- 📰 RSS, Atom, and JSON feeds
+- 🧮 KaTeX support for mathematical equations
+- 🎥 YouTube video embedding
+- 🐦 Twitter/X embeds
+- 📨 Contact form integration
 
-## Installation
+## Quick Start
 
-Nextfolio uses [pnpm](https://pnpm.io/installation) for dependency management, so ensure it is installed on your system.
+1. **Prerequisites**
+   - [Node.js](https://nodejs.org/)
+   - [pnpm](https://pnpm.io/installation)
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [pnpm](https://pnpm.io/installation) to bootstrap the example:
+2. **Installation**
+   ```bash
+   pnpm create next-app --example https://github.com/1msirius/Nextfolio my-portfolio
+   cd my-portfolio
+   pnpm install
+   ```
 
-```
-pnpm create next-app --example https://github.com/1msirius/Nextfolio my-portfolio
-```
-
-Start the development server:
-
-```
-pnpm dev
-```
-
-The server will be running at [http://localhost:3000](http://localhost:3000).
+3. **Development**
+   ```bash
+   pnpm dev
+   ```
+   Visit [http://localhost:3000](http://localhost:3000)
 
 ## Configuration
 
-1. Update the site metadata and social links in `config/metadata.ts` to set up SEO, feeds, social links, and Open Graph settings.
-2. Update your routes in `app/sitemap.ts` for SEO optimization.
-3. Update your notes in the `/content` folder.
+1. **Site Metadata**
+   Update `config/metadata.ts` with your information:
+   ```typescript
+   export const metaData = {
+     baseUrl: "your-site-url",
+     title: "Your Site Title",
+     name: "Your Name",
+     ogImage: "/opengraph-image.png",
+     description: "Your site description"
+   };
 
-For more information about configuration, follow the instructions in the [Getting Started](https://nextfolio-template.vercel.app/blog/getting-started#configuration) post.
+   export const socialLinks = {
+     twitter: "your-twitter-url",
+     github: "your-github-url",
+     instagram: "your-instagram-url",
+     linkedin: "your-linkedin-url",
+     email: "mailto:your-email"
+   };
+   ```
+
+2. **Content**
+   - Blog posts: Add MDX files in `/content`
+   - Projects: Update `app/project/projectdata.tsx`
+   - Photos: Modify `app/photos/page.tsx`
+
+3. **Assets**
+   - Replace `public/profile.png` with your photo
+   - Update `public/favicon.ico`
+
+## Analytics
+
+Nextfolio comes with built-in support for [Vercel Analytics](https://vercel.com/docs/analytics) and [Speed Insights](https://vercel.com/docs/speed-insights). Simply deploy your site to Vercel and enable these features in your project settings.
+
+## Tech Stack
+
+- **Framework:** Next.js 14
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS
+- **Content:** MDX
+- **Deployment:** Vercel
+- **Analytics:** Vercel Analytics & Speed Insights
+
+## Dependencies
+
+Key dependencies include:
+- React 18.3
+- Next.js 14.2
+- Tailwind CSS 3.4
+- MDX for content
+- KaTeX for math equations
+- Various utility libraries (date-fns, clsx)
 
 ## Contributing
 
-Contributions are welcome! To get involved, just push your code to the repo. Whether you're enhancing existing features or adding new ones, your efforts are greatly appreciated!
+Contributions are welcome! Please feel free to submit a Pull Request.
 
-## Licence
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-Nextfolio is open-source and released under the MIT License.
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Support
+
+For issues and feature requests, please [open an issue](https://github.com/yourusername/your-repo/issues) on GitHub.
+
+---
+
+Built with ❤️ using Next.js and Vercel

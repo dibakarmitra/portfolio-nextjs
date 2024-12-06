@@ -43,7 +43,7 @@ export const metaData = {
   skills: [
     {
       title: "Backend Development",
-      subtitle: "PHP & PYTHON",
+      subtitle: "LARAVEL & PYTHON",
       color: "bg-orange-500",
       textColor: "text-gray-300 dark:text-gray-500"
     },
