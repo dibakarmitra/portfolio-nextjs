@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getNotePost, getNotePosts } from "app/lib/posts";
-import { metaData } from "config/metadata";
+import { getNotePost, getNotePosts } from "@/lib/posts";
+import { metaData } from "@/config/metadata";
 import NoteLayout from "../../components/note-layout";
 import { MDXRemote } from "next-mdx-remote/rsc";
 

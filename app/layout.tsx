@@ -7,7 +7,7 @@ import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import Footer from "./components/footer";
 import { ThemeProvider, ThemeSwitch } from "./components/theme-switch";
-import { metaData } from "config/metadata";
+import { metaData } from "@/config/metadata";
 import MDXLayout from "./components/mdx-provider";
 
 export const metadata: Metadata = {

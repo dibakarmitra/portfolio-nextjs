@@ -1,5 +1,5 @@
 // app/notes/page.tsx
-import { getNotePosts } from "app/lib/posts";
+import { getNotePosts } from "@/lib/posts";
 import Link from "next/link";
 import type { NotePost } from "app/lib/posts";
 

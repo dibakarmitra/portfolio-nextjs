@@ -1,7 +1,7 @@
 'use client';
 
 import Link from "next/link";
-import { metaData } from "config/metadata";
+import { metaData } from "@/config/metadata";
 import { memo } from 'react';
 import { useState, useEffect } from 'react';
 import { FiMenu, FiX } from 'react-icons/fi';

@@ -1,6 +1,6 @@
 import { Feed } from "feed";
-import { getNotePosts } from "../../../lib/posts";
-import { metaData } from "config/metadata";
+import { getNotePosts } from "@/app/lib/posts";
+import { metaData } from "@/config/metadata";
 import { NextResponse } from "next/server";
 
 export async function GET(

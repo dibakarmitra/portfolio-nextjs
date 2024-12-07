@@ -1,4 +1,4 @@
-import { metaData } from "config/metadata";
+import { metaData } from "@/config/metadata";
 
 export default function robots() {
   return {
