@@ -1,4 +1,6 @@
-export const resumeData = {
+import { ResumeData } from '@/types/resume';
+
+export const resumeData: ResumeData = {
   name: "Dibakar Mitra",
   title: "Software Developer",
   email: "dibakarmitra10@gmail.com",

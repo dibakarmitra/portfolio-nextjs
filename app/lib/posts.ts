@@ -1,21 +1,9 @@
+import { NotePost } from '@/types/notes';
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 
-export type NotePost = {
-  slug: string;
-  metadata: {
-    baseUrl: string;
-    title: string;
-    date: Date;
-    excerpt: string;
-    tags: string[];
-    image?: string;
-    summary?: string;
-    publishedAt?: Date;
-  };
-  content: string;
-};
+export type { NotePost };
 
 function getMDXFiles(dir: string) {
   return fs.readdirSync(dir).filter((file) => path.extname(file) === ".mdx");
@@ -28,26 +16,44 @@ function readMDXFile(filePath: string): NotePost {
 
   return {
     slug,
-    metadata: {
-      baseUrl: data.baseUrl,
-      title: data.title,
-      date: new Date(data.date),
-      excerpt: data.excerpt,
-      tags: data.tags || [],
-      image: data.image,
-      publishedAt: data.publishedAt ? new Date(data.publishedAt) : undefined,
-    },
+    title: data.title,
+    date: data.date,
+    excerpt: data.excerpt,
+    tags: data.tags || [],
     content,
+    image: data.image,
   };
 }
 
 export function getNotePosts(): NotePost[] {
-  const postsDirectory = path.join(process.cwd(), "app/content/blog");
-  const mdxFiles = getMDXFiles(postsDirectory);
-  
-  return mdxFiles
-    .map((file) => readMDXFile(path.join(postsDirectory, file)))
-    .sort((a, b) => new Date(b.metadata.date).getTime() - new Date(a.metadata.date).getTime());
+  const postsDirectory = path.join(process.cwd(), 'app/content/blog');
+  const fileNames = fs.readdirSync(postsDirectory);
+  const allPostsData = fileNames
+    .filter(fileName => fileName.endsWith('.mdx'))
+    .map(fileName => {
+      const slug = fileName.replace(/\.mdx$/, '');
+      const fullPath = path.join(postsDirectory, fileName);
+      const fileContents = fs.readFileSync(fullPath, 'utf8');
+      const { data, content } = matter(fileContents);
+
+      return {
+        slug,
+        title: data.title,
+        date: data.date,
+        excerpt: data.excerpt,
+        tags: data.tags || [],
+        content,
+        image: data.image,
+      } as NotePost;
+    });
+
+  return allPostsData.sort((a, b) => {
+    if (a.date < b.date) {
+      return 1;
+    } else {
+      return -1;
+    }
+  });
 }
 
 export function getNotePost(slug: string): NotePost | null {
@@ -67,7 +73,6 @@ export function formatDate(date: string, includeRelative = false) {
     const currentDate = new Date();
     const targetDate = new Date(date);
 
-    // Return only formatted date if includeRelative is false
     if (!includeRelative) {
       return new Intl.DateTimeFormat('en-US', {
         month: 'short',
@@ -99,7 +104,6 @@ export function formatDate(date: string, includeRelative = false) {
 
     return includeRelative && relativeTime ? `${fullDate} (${relativeTime})` : fullDate;
   } catch (error) {
-    // If there's any error in date formatting, return the original date string
     console.error('Error formatting date:', error);
     return date;
   }

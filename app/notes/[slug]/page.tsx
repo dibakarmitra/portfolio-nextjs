@@ -22,7 +22,7 @@ export async function generateMetadata({
     return;
   }
 
-  const { title, date, excerpt, image } = post.metadata;
+  const { title, date, excerpt, image } = post;
   const ogImage = image
     ? image
     : `${metaData.baseUrl}/og?title=${encodeURIComponent(title)}`;
@@ -34,7 +34,7 @@ export async function generateMetadata({
       title,
       description: excerpt,
       type: "article",
-      publishedTime: date.toISOString(),
+      publishedTime: new Date(date).toISOString(),
       url: `${metaData.baseUrl}/notes/${post.slug}`,
       images: [
         {
@@ -60,9 +60,9 @@ export default function Blog({ params }: { params: { slug: string } }) {
 
   return (
     <NoteLayout
-      title={post.metadata.title}
-      date={formatDate(post.metadata.date)}
-      tags={post.metadata.tags}
+      title={post.title}
+      date={formatDate(new Date(post.date))}
+      tags={post.tags}
     >
       <script
         type="application/ld+json"
@@ -71,13 +71,13 @@ export default function Blog({ params }: { params: { slug: string } }) {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "NotePosting",
-            headline: post.metadata.title,
-            datePublished: post.metadata.date.toISOString(),
-            dateModified: post.metadata.date.toISOString(),
-            description: post.metadata.excerpt,
-            image: post.metadata.image
-              ? `${metaData.baseUrl}${post.metadata.image}`
-              : `${metaData.baseUrl}/og?title=${encodeURIComponent(post.metadata.title)}`,
+            headline: post.title,
+            datePublished: new Date(post.date).toISOString(),
+            dateModified: new Date(post.date).toISOString(),
+            description: post.excerpt,
+            image: post.image
+              ? `${metaData.baseUrl}${post.image}`
+              : `${metaData.baseUrl}/og?title=${encodeURIComponent(post.title)}`,
             url: `${metaData.baseUrl}/notes/${post.slug}`,
             author: {
               "@type": "Person",

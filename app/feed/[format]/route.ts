@@ -1,18 +1,9 @@
 import { Feed } from "feed";
-import { getNotePosts } from "../../../app/lib/posts";
-import { metaData } from "../../../config/metadata";
+import { getNotePosts } from "@/app/lib/posts";
+import { metaData } from "@/config/metadata";
 import { NextResponse } from "next/server";
+import type { NotePost } from "@/types/notes";
 
-// Generate static paths for feed formats
-export async function generateStaticParams() {
-  return [
-    { format: "rss.xml" },
-    { format: "atom.xml" },
-    { format: "feed.json" },
-  ];
-}
-
-// Handle GET request for feeds
 export async function GET(
   _: Request,
   { params }: { params: { format: string } }
@@ -20,7 +11,6 @@ export async function GET(
   const { format } = params;
   const validFormats = ["rss.xml", "atom.xml", "feed.json"];
 
-  // Check if format is valid
   if (!validFormats.includes(format)) {
     return NextResponse.json(
       { error: "Unsupported feed format" },
@@ -28,12 +18,10 @@ export async function GET(
     );
   }
 
-  // Base URL for the site
-  const BaseUrl = metaData.siteUrl.endsWith("/")
-    ? metaData.siteUrl
-    : `${metaData.siteUrl}/`;
+  const BaseUrl = metaData.baseUrl.endsWith("/")
+    ? metaData.baseUrl
+    : `${metaData.baseUrl}/`;
 
-  // Initialize the feed
   const feed = new Feed({
     title: metaData.title,
     description: metaData.description,
@@ -44,36 +32,40 @@ export async function GET(
     }`,
     generator: "Feed for Node.js",
     feedLinks: {
-      json: `${BaseUrl}feed.json`,
-      atom: `${BaseUrl}atom.xml`,
-      rss: `${BaseUrl}rss.xml`,
+      json: `${BaseUrl}api/feed/feed.json`,
+      atom: `${BaseUrl}api/feed/atom.xml`,
+      rss: `${BaseUrl}api/feed/rss.xml`,
     },
   });
 
-  // Fetch all posts
   const allPosts = await getNotePosts();
 
-  // Add posts to the feed
-  allPosts.forEach((post) => {
+  allPosts.forEach((post: NotePost) => {
     const postUrl = `${BaseUrl}blog/${post.slug}`;
-    const categories = Array.isArray(post.metadata.tags)
-      ? post.metadata.tags.map((tag) => tag.trim())
-      : [];
+    const categories = Array.isArray(post.tags) ? post.tags.map((tag) => tag.trim()) : [];
 
     feed.addItem({
-      title: post.metadata.title,
+      title: post.title,
       id: postUrl,
       link: postUrl,
-      description: post.metadata.summary,
+      description: post.excerpt,
+      content: post.content,
+      author: [
+        {
+          name: metaData.author,
+          email: metaData.email,
+          link: metaData.siteUrl,
+        },
+      ],
+      contributor: [],
       category: categories.map((tag) => ({
         name: tag,
-        term: tag,
+        term: tag, // Optional: Use if you need additional metadata.
       })),
-      date: new Date(post.metadata.publishedAt || Date.now()),
+      date: new Date(post.date),
     });
   });
 
-  // Map feed formats to content types and generated content
   const responseMap: Record<string, { content: string; contentType: string }> =
     {
       "rss.xml": { content: feed.rss2(), contentType: "application/xml" },
@@ -81,7 +73,6 @@ export async function GET(
       "feed.json": { content: feed.json1(), contentType: "application/json" },
     };
 
-  // Generate response for the requested format
   const response = responseMap[format];
 
   return new NextResponse(response.content, {

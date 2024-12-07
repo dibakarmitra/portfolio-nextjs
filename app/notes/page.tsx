@@ -1,15 +1,15 @@
 // app/notes/page.tsx
 import { getNotePosts } from "@/lib/posts";
 import Link from "next/link";
-import type { NotePost } from "app/lib/posts";
+import type { NotePost } from "@/types/notes";
 
 export const metadata = {
   title: "Notes",
   description: "Technical insights, learnings, and personal reflections",
 };
 
-function formatDate(date: Date) {
-  return date.toLocaleDateString('en-US', {
+function formatDate(date: string) {
+  return new Date(date).toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'long',
     day: 'numeric'
@@ -44,17 +44,17 @@ export default function NotesPage({ searchParams }: { searchParams: { page?: str
             <div className="group cursor-pointer bg-gray-50 dark:bg-gray-800 rounded-xl p-6 h-full hover:scale-[1.02] transition-all">
               <div className="flex flex-col h-full">
                 <div className="text-sm text-gray-600 dark:text-gray-400 mb-3">
-                  {formatDate(post.metadata.date)}
+                  {formatDate(post.date)}
                 </div>
                 <h3 className="text-xl font-bold mb-3 group-hover:text-orange-500 transition-colors">
-                  {post.metadata.title}
+                  {post.title}
                 </h3>
                 <p className="text-gray-600 dark:text-gray-400 mb-4 flex-grow">
-                  {post.metadata.excerpt}
+                  {post.excerpt}
                 </p>
-                {post.metadata.tags && post.metadata.tags.length > 0 && (
+                {post.tags && post.tags.length > 0 && (
                   <div className="flex flex-wrap gap-2 mt-auto">
-                    {post.metadata.tags.map((tag, tagIndex) => (
+                    {post.tags.map((tag, tagIndex) => (
                       <span 
                         key={tagIndex}
                         className="px-3 py-1 bg-gray-200 dark:bg-gray-700 rounded-full text-sm"
@@ -62,15 +62,6 @@ export default function NotesPage({ searchParams }: { searchParams: { page?: str
                         {tag}
                       </span>
                     ))}
-                  </div>
-                )}
-                {post.metadata.image && (
-                  <div className="mt-4 aspect-video rounded-lg overflow-hidden">
-                    <img 
-                      src={post.metadata.image} 
-                      alt={post.metadata.title}
-                      className="w-full h-full object-cover"
-                    />
                   </div>
                 )}
               </div>

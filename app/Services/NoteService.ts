@@ -1,5 +1,6 @@
 import BaseService from './BaseService';
-import { getAllPosts, getPostBySlug, NotePost } from '../lib/notes';
+import { NotePost } from '@/types/notes';
+import { getAllPosts, getPostBySlug } from '../lib/notes';
 
 export default class NoteService extends BaseService {
     async getAllPosts(): Promise<NotePost[]> {

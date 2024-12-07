@@ -1,5 +1,6 @@
 import { FaGithub, FaLinkedin, FaTwitter, FaDownload } from 'react-icons/fa';
 import { HiMail, HiLocationMarker } from 'react-icons/hi';
+import { ResumeSkills } from '@/types/resume';
 import { resumeData } from '@/lib/resume';
 
 export const metadata = {
@@ -73,11 +74,11 @@ export default function ResumePage() {
           {/* Skills */}
           <section>
             <h3 className="text-xl font-bold mb-4">Skills</h3>
-            {Object.entries(resumeData.skills).map(([category, skills]) => (
+            {Object.entries(resumeData.skills).map(([category, skills]: [string, string[]]) => (
               <div key={category} className="mb-4">
                 <h4 className="text-lg font-semibold mb-2 capitalize">{category}</h4>
                 <div className="flex flex-wrap gap-2">
-                  {skills.map((skill) => (
+                  {skills.map((skill: string) => (
                     <span
                       key={skill}
                       className="px-3 py-1.5 bg-gradient-to-r from-gray-50 to-gray-100 dark:from-gray-800/50 dark:to-gray-800/30 rounded-lg hover:from-orange-50 hover:to-orange-100 dark:hover:from-orange-900/20 dark:hover:to-orange-900/10 transition-colors group"
@@ -134,11 +135,13 @@ export default function ResumePage() {
                         <p className="text-gray-600 dark:text-gray-400">{exp.location}</p>
                       </div>
                     </div>
-                    <ul className="space-y-1 mt-2 text-gray-600 dark:text-gray-400">
-                      {exp.achievements.map((achievement, i) => (
-                        <li key={i} className="pl-0">{achievement}</li>
-                      ))}
-                    </ul>
+                    {exp.achievements && exp.achievements.length > 0 && (
+                      <ul className="space-y-1 mt-2 text-gray-600 dark:text-gray-400">
+                        {exp.achievements.map((achievement, i) => (
+                          <li key={i} className="pl-0">{achievement}</li>
+                        ))}
+                      </ul>
+                    )}
                   </div>
                 </div>
               ))}
@@ -162,11 +165,13 @@ export default function ResumePage() {
                       <p className="text-gray-600 dark:text-gray-400">{edu.location}</p>
                     </div>
                   </div>
-                  <ul className="space-y-1 mt-2 text-gray-600 dark:text-gray-400">
-                    {edu.achievements.map((achievement, i) => (
-                      <li key={i} className="pl-0">{achievement}</li>
-                    ))}
-                  </ul>
+                  {edu.achievements && edu.achievements.length > 0 && (
+                    <ul className="space-y-1 mt-2 text-gray-600 dark:text-gray-400">
+                      {edu.achievements.map((achievement, i) => (
+                        <li key={i} className="pl-0">{achievement}</li>
+                      ))}
+                    </ul>
+                  )}
                 </div>
               </div>
             ))}

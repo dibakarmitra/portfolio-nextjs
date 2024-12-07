@@ -1,19 +1,11 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
+import { NotePost } from '@/types/notes';
 
 const postsDirectory = path.join(process.cwd(), 'app/content/blog');
 
-export interface NotePost {
-  slug: string;
-  title: string;
-  date: string;
-  excerpt: string;
-  tags: string[];
-  content: string;
-}
-
-export function getAllPosts(): NotePost[] {
+function getAllPosts(): NotePost[] {
   // Get file names under /content/blog
   const fileNames = fs.readdirSync(postsDirectory);
   const allPostsData = fileNames
@@ -50,7 +42,7 @@ export function getAllPosts(): NotePost[] {
   });
 }
 
-export function getPostBySlug(slug: string): NotePost | null {
+function getPostBySlug(slug: string): NotePost | null {
   try {
     const fullPath = path.join(postsDirectory, `${slug}.mdx`);
     const fileContents = fs.readFileSync(fullPath, 'utf8');
@@ -68,3 +60,5 @@ export function getPostBySlug(slug: string): NotePost | null {
     return null;
   }
 }
+
+export { getAllPosts, getPostBySlug };
