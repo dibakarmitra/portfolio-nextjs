@@ -1,9 +1,9 @@
 import { metaData, socialLinks } from "config/metadata";
-import SkillCard from "./components/SkillCard";
-import ProjectCard from "./components/ProjectCard";
-import ExperienceCard from "./components/ExperienceCard";
-import BlogPost from "./components/BlogPost";
-import ContactForm from "./components/ContactForm";
+import SkillCard from "./components/skill-card";
+import ProjectCard from "./components/project-card";
+import ExperienceCard from "./components/experience-card";
+import BlogPost from "./components/blog-post";
+import ContactForm from "./components/contact-form";
 
 export default function Page() {
   return (

@@ -1,4 +1,4 @@
-// /app/projects/page.tsx
+// /app/projects/notes-page.tsx
 import { getProjects } from "@/lib/projects";
 import type { Project } from "app/lib/projects"; // This import should work correctly now
 import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
