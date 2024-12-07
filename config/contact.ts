@@ -1,8 +1,8 @@
 export const contactConfig = {
   email: {
     from: "Dibakar Mitra <work@dibakarmitra.com>",
-    to: ["dibakarmitra07@gmail.com", "mitradibakar@outlook.com", "Dibakar Mitra <work@dibakarmitra.com>"],
-    subject: (name: string) => `New Contact Form Submission from ${name}`,
+    to: ["Dibakar Mitra <dibakarmitra07@gmail.com>", "Dibakar Mitra <mitradibakar@outlook.com>", "Dibakar Mitra <work@dibakarmitra.com>"],
+    subject: (name: string) => `New Contact from ${name}`,
     emailTemplate: {
       text: (data: { name: string; email: string; message: string }) => `
         Name: ${data.name}
