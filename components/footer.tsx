@@ -41,7 +41,7 @@ function SocialLinks() {
       <SocialLink href={socialLinks.linkedin} icon={FaLinkedinIn} />
       <SocialLink href={socialLinks.email} icon={TbMailFilled} />
       <a 
-        href="/api/feed/rss.xml" 
+        href="/feed/rss.xml" 
         target="_self"
         className="text-gray-600 hover:text-orange-500 dark:text-gray-400 dark:hover:text-orange-400 transition-all duration-300 transform hover:scale-110"
       >
