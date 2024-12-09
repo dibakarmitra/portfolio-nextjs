@@ -6,10 +6,21 @@ export async function GET(request: NextRequest) {
   const category = searchParams.get('category');
   const id = searchParams.get('id');
   const alt = searchParams.get('alt');
+  
+  // Pagination parameters
+  const page = parseInt(searchParams.get('page') || '1', 10);
+  const limit = parseInt(searchParams.get('limit') || '10', 10);
 
   if (category) {
     const photos = getPhotosByCategory(category);
-    return NextResponse.json(photos);
+    const paginatedPhotos = photos.slice((page - 1) * limit, page * limit);
+    return NextResponse.json({
+      photos: paginatedPhotos,
+      total: photos.length,
+      page,
+      limit,
+      totalPages: Math.ceil(photos.length / limit)
+    });
   }
 
   if (id) {
@@ -27,7 +38,15 @@ export async function GET(request: NextRequest) {
   }
 
   const photos = getPhotos();
-  return NextResponse.json(photos);
+  const paginatedPhotos = photos.slice((page - 1) * limit, page * limit);
+  
+  return NextResponse.json({
+    photos: paginatedPhotos,
+    total: photos.length,
+    page,
+    limit,
+    totalPages: Math.ceil(photos.length / limit)
+  });
 }
 
 // Placeholder for other methods to maintain API consistency

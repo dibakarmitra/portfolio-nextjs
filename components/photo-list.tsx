@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
 import type { Photo } from "@/types/photos";
 import PhotoListSkeleton from './skeletons/photo-list-skeleton';
@@ -8,43 +8,41 @@ import PhotoListSkeleton from './skeletons/photo-list-skeleton';
 export default function PhotoList() {
   const [photos, setPhotos] = useState<Photo[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
 
-  useEffect(() => {
-    async function fetchPhotos() {
-      try {
-        setIsLoading(true);
-        const response = await fetch(`/api/photos?page=${page}`);
-        
-        if (!response.ok) {
-          throw new Error('Failed to fetch photos');
-        }
-
-        const data = await response.json();
-        setPhotos(data.photos || data);
-        setTotalPages(data.pagination?.totalPages || 1);
-      } catch (err) {
-        setError(err instanceof Error ? err.message : 'An unknown error occurred');
-      } finally {
-        setIsLoading(false);
-      }
+  const fetchPhotos = useCallback(async () => {
+    setIsLoading(true);
+    try {
+      const response = await fetch(`/api/photos?page=${page}&limit=10`);
+      const data = await response.json();
+      setPhotos(data.photos);
+      setTotalPages(data.totalPages);
+    } catch (error) {
+      console.error('Failed to fetch photos:', error);
+    } finally {
+      setIsLoading(false);
     }
+  }, [page]);
 
+  useEffect(() => {
     fetchPhotos();
+  }, [page, fetchPhotos]);
+
+  const handleNextPage = useCallback(() => {
+    if (page < totalPages) {
+      setPage(prevPage => prevPage + 1);
+    }
+  }, [page, totalPages]);
+
+  const handlePrevPage = useCallback(() => {
+    if (page > 1) {
+      setPage(prevPage => prevPage - 1);
+    }
   }, [page]);
 
   if (isLoading) {
     return <PhotoListSkeleton />;
-  }
-
-  if (error) {
-    return (
-      <div className="text-red-500 text-center py-8">
-        {error}
-      </div>
-    );
   }
 
   return (
@@ -82,7 +80,7 @@ export default function PhotoList() {
       {totalPages > 1 && (
         <div className="flex justify-center mt-8 space-x-4">
           <button 
-            onClick={() => setPage(prev => Math.max(1, prev - 1))}
+            onClick={handlePrevPage}
             disabled={page === 1}
             className="px-4 py-2 bg-gray-200 dark:bg-gray-700 rounded disabled:opacity-50"
           >
@@ -92,7 +90,7 @@ export default function PhotoList() {
             Page {page} of {totalPages}
           </span>
           <button 
-            onClick={() => setPage(prev => Math.min(totalPages, prev + 1))}
+            onClick={handleNextPage}
             disabled={page === totalPages}
             className="px-4 py-2 bg-gray-200 dark:bg-gray-700 rounded disabled:opacity-50"
           >
