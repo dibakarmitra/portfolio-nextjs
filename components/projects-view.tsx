@@ -2,8 +2,8 @@
 
 import { useState } from 'react';
 import { FaGithub, FaExternalLinkAlt, FaThLarge, FaList } from "react-icons/fa";
-import type { Project } from "app/lib/projects";
-import { formatDate } from "app/lib/formatDate";
+import type { Project } from "@/lib/projects";
+import { formatDate } from "@/lib/formatDate";
 
 interface ProjectsViewProps {
   projects: Project[];

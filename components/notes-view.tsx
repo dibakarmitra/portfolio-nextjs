@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { FaThLarge, FaList } from "react-icons/fa";
 import { NotePost } from '@/types/notes';
 import { useNotes } from '../hooks/useNotes';
-import { formatDate } from "@/app/lib/posts";
+import { formatDate } from "@/lib/posts";
 
 interface NotesViewProps {
   posts: NotePost[];

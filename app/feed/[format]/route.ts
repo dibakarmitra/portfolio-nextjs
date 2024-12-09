@@ -1,5 +1,5 @@
 import { Feed } from "feed";
-import { getNotePosts } from "@/app/lib/posts";
+import { getNotePosts } from "@/lib/posts";
 import { metaData } from "@/config/metadata";
 import { NextResponse } from "next/server";
 import type { NotePost } from "@/types/notes";

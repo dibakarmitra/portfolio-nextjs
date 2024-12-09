@@ -1,5 +1,5 @@
 import Link from "next/link";
-import type { Project } from "app/lib/projects";
+import type { Project } from "@/lib/projects";
 import styles from "../styles/animations.module.css";
 
 interface ProjectListProps {

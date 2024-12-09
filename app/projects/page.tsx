@@ -1,6 +1,6 @@
 // /app/projects/notes-page.tsx
 import { getProjects } from "@/lib/projects";
-import type { Project } from "app/lib/projects"; // This import should work correctly now
+import type { Project } from "@/lib/projects"; 
 import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
 
 export const metadata = {

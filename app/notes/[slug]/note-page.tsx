@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { useState, useEffect } from 'react';
 import { NotePost } from '@/types/notes';
-import { useNotes } from '@/app/hooks/useNotes';
+import { useNotes } from "@/hooks/useNotes";
 import { metaData } from "@/config/metadata";
-import NoteLayout from "../../components/note-layout";
+import NoteLayout from "@/components/note-layout";
 import { MDXRemote } from "next-mdx-remote/rsc";
 
 export async function generateStaticParams() {

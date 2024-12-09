@@ -1,6 +1,6 @@
 import React from "react";
 import type { Metadata } from "next";
-import BlurImage from '../components/BlurImage';
+import BlurImage from "@/components/blur-image";
 
 export const metadata: Metadata = {
   title: 'Photos',

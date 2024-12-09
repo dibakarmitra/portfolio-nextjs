@@ -1,5 +1,5 @@
 import { MetadataRoute } from "next";
-import { getNotePosts } from "@/app/lib/posts";
+import { getNotePosts } from "@/lib/posts";
 import { metaData } from "@/config/metadata";
 
 const BaseUrl = metaData.baseUrl.endsWith("/")
