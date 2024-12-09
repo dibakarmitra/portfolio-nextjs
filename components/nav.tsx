@@ -20,7 +20,7 @@ const navItems: NavItem[] = [
   { path: "/resume", name: "Resume" },
 ];
 
-const NavLink = memo(({ path, name }: NavItem) => {
+const NavLink = memo(({ path, name, onLinkClick }: NavItem & { onLinkClick?: () => void }) => {
   const pathname = usePathname();
   const isActive = pathname === path || (path !== '/' && pathname?.startsWith(path));
   const isExternal = path.startsWith('http');
@@ -28,9 +28,14 @@ const NavLink = memo(({ path, name }: NavItem) => {
   const LinkComponent = isExternal ? 'a' : Link;
   const externalProps = isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {};
 
+  const handleClick = () => {
+    onLinkClick?.();
+  };
+
   return (
     <LinkComponent
       href={path}
+      onClick={handleClick}
       className={`relative px-2 py-2 text-sm font-medium transition-colors duration-200 group ${
         isActive 
           ? 'text-black dark:text-white' 
@@ -51,6 +56,10 @@ export const Navbar = memo(function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+  };
+
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
@@ -69,6 +78,7 @@ export const Navbar = memo(function Navbar() {
           {/* Logo/Brand */}
           <Link 
             href="/" 
+            onClick={closeMenu}
             className="text-sm font-bold text-gray-800 dark:text-gray-200 hover:text-black dark:hover:text-white transition-colors group relative flex items-center gap-3"
           >
             <div className="relative">
@@ -110,7 +120,7 @@ export const Navbar = memo(function Navbar() {
           <div className="py-3 space-y-3">
             {navItems.slice(1).map((item) => (
               <div key={item.path} className="px-2">
-                <NavLink {...item} />
+                <NavLink {...item} onLinkClick={closeMenu} />
               </div>
             ))}
           </div>
