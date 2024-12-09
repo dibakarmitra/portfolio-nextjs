@@ -3,15 +3,17 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { FaThLarge, FaList } from "react-icons/fa";
-import type { NotePost } from "@/types/notes";
+import { NotePost } from '@/types/notes';
+import { useNotes } from '../hooks/useNotes';
 import { formatDate } from "@/app/lib/posts";
 
 interface NotesViewProps {
   posts: NotePost[];
 }
 
-export default function NotesView({ posts }: NotesViewProps) {
+export default function NotesView() {
   const [isGridView, setIsGridView] = useState(true);
+  const { posts } = useNotes();
 
   return (
     <div className="container mx-auto px-4 py-8">

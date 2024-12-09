@@ -1,13 +1,15 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getNotePost, getNotePosts } from "@/lib/posts";
+import { useState, useEffect } from 'react';
+import { NotePost } from '@/types/notes';
+import { useNotes } from '@/app/hooks/useNotes';
 import { metaData } from "@/config/metadata";
 import NoteLayout from "../../components/note-layout";
 import { MDXRemote } from "next-mdx-remote/rsc";
 
 export async function generateStaticParams() {
-  const posts = getNotePosts();
-  return posts.map((post) => ({
+  const { posts } = useNotes();
+  return posts.map((post: NotePost) => ({
     slug: post.slug,
   }));
 }
@@ -17,24 +19,25 @@ export async function generateMetadata({
 }: {
   params: { slug: string };
 }): Promise<Metadata | undefined> {
-  const post = getNotePost(params.slug);
+  const { getPostBySlug } = useNotes();
+  const post = getPostBySlug(params.slug);
+
   if (!post) {
     return;
   }
 
-  const { title, date, excerpt, image } = post;
-  const ogImage = image
-    ? image
-    : `${metaData.baseUrl}/og?title=${encodeURIComponent(title)}`;
+  const ogImage = post.image
+    ? post.image
+    : `${metaData.baseUrl}/og?title=${encodeURIComponent(post.title)}`;
 
   return {
-    title,
-    description: excerpt,
+    title: post.title,
+    description: post.excerpt,
     openGraph: {
-      title,
-      description: excerpt,
+      title: post.title,
+      description: post.excerpt,
       type: "article",
-      publishedTime: new Date(date).toISOString(),
+      publishedTime: new Date(post.date).toISOString(),
       url: `${metaData.baseUrl}/notes/${post.slug}`,
       images: [
         {
@@ -44,15 +47,16 @@ export async function generateMetadata({
     },
     twitter: {
       card: "summary_large_image",
-      title,
-      description: excerpt,
+      title: post.title,
+      description: post.excerpt,
       images: [ogImage],
     },
   };
 }
 
 export default function Blog({ params }: { params: { slug: string } }) {
-  const post = getNotePost(params.slug);
+  const { getPostBySlug } = useNotes();
+  const post = getPostBySlug(params.slug);
 
   if (!post) {
     notFound();
