@@ -91,7 +91,7 @@ export default function RootLayout({
             </header>
 
             <main className="flex-1 w-full">
-              <div className="mx-auto max-w-5xl px-4 md:px-6 lg:px-8 py-12 md:py-16 lg:py-20">
+              <div className="mx-auto max-w-6xl px-4 md:px-6 lg:px-8 py-12 md:py-16 lg:py-20">
                 <MDXLayout>{children}</MDXLayout>
               </div>
             </main>

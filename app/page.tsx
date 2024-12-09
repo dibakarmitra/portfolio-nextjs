@@ -9,25 +9,18 @@ export default function Page() {
   return (
     <div className="flex flex-col space-y-24">
       {/* Hero Section */}
-      <section className="relative pt-16 md:pt-24 overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-orange-50/50 to-orange-100/30 dark:from-gray-900/30 dark:to-orange-900/10 -z-10 transform -skew-y-6"></div>
-        <div className="flex flex-col-reverse md:flex-row items-center justify-between gap-12 relative">
-          <div className="flex-1 space-y-6 z-10">
-            <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight">
-              {metaData.jobTitle.split(' ').map((word, index) => (
-                <span 
-                  key={index} 
-                  className={`block ${index === 0 ? 'text-gray-900 dark:text-white' : 'text-orange-500'}`}
-                >
-                  {word.toUpperCase()}
-                </span>
-              ))}
+      <section className="relative pt-8 md:pt-12">
+        <div className="flex flex-col-reverse md:flex-row items-center justify-between gap-8 md:gap-12">
+          <div className="flex-1 space-y-6">
+            <h1 className="text-4xl md:text-5xl font-bold">
+              <span className="">SOFTWARE </span>
+              <span className="text-orange-500">DEVELOPER </span>
             </h1>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl leading-relaxed">
+            <p className="text-gray-600 dark:text-gray-400 text-lg max-w-2xl">
               {metaData.description}
             </p>
-            <div className="flex items-center gap-4 pt-4">
-              <a
+            <div className="flex items-center gap-4">
+              <a 
                 href={socialLinks.github}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -35,7 +28,7 @@ export default function Page() {
               >
                 View GitHub
               </a>
-              <a
+              <a 
                 href={`mailto:${socialLinks.email}`}
                 className="inline-flex items-center justify-center px-8 py-3 border-2 border-orange-500 text-orange-500 text-base font-semibold rounded-full hover:bg-orange-50 dark:hover:bg-orange-900/20 transition-all duration-300 transform hover:-translate-y-1"
               >
@@ -43,12 +36,12 @@ export default function Page() {
               </a>
             </div>
           </div>
-          <div className="relative w-56 h-56 md:w-72 md:h-72 group">
-            <div className="absolute -inset-2 bg-gradient-to-br from-orange-400 to-orange-600 rounded-full blur-2xl opacity-30 group-hover:opacity-40 transition-opacity duration-300"></div>
-            <img
-              src="/profile.jpg"
-              alt={metaData.name}
-              className="relative rounded-full object-cover w-full h-full shadow-2xl ring-4 ring-orange-500/20 group-hover:scale-105 transition-transform duration-300"
+          <div className="relative w-48 h-48 md:w-64 md:h-64">
+            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-orange-400 to-orange-600 blur-2xl opacity-20 animate-pulse"></div>
+            <img 
+              src="/profile.jpg" 
+              alt={metaData.name} 
+              className="relative rounded-full object-cover w-full h-full shadow-2xl ring-4 ring-orange-500/20"
             />
           </div>
         </div>
