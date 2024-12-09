@@ -4,6 +4,7 @@ export const resumeData: ResumeData = {
   name: "Dibakar Mitra",
   title: "Software Developer",
   email: "dibakarmitra10@gmail.com",
+  phone: "+91 7278589051",
   location: "Kolkata, India",
   about: "Experienced Software Developer with expertise in building scalable web applications and microservices. Passionate about clean code, performance optimization, and modern development practices.",
   

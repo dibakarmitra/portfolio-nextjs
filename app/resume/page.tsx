@@ -1,5 +1,5 @@
 import { FaGithub, FaLinkedin, FaTwitter, FaDownload } from 'react-icons/fa';
-import { HiMail, HiLocationMarker } from 'react-icons/hi';
+import { HiMail, HiLocationMarker, HiPhone } from 'react-icons/hi';
 import { ResumeSkills } from '@/types/resume';
 import { resumeData } from '@/lib/resume';
 
@@ -21,6 +21,12 @@ export default function ResumePage() {
             <HiMail className="text-lg" />
             <span>{resumeData.email}</span>
           </a>
+          {resumeData.phone && (
+            <a href={`tel:${resumeData.phone.replace(/\s/g, '')}`} className="flex items-center gap-2 hover:text-orange-500">
+              <HiPhone className="text-lg" />
+              <span>{resumeData.phone}</span>
+            </a>
+          )}
           <span className="flex items-center gap-2">
             <HiLocationMarker className="text-lg" />
             <span>{resumeData.location}</span>

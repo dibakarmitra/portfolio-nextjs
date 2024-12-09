@@ -44,6 +44,7 @@ export interface ResumeData {
   name: string;
   title: string;
   email: string;
+  phone?: string;
   location: string;
   about: string;
   socialLinks: ResumeSocialLinks;
