@@ -77,7 +77,7 @@ export default function PhotosPage() {
 
       {/* Photos Grid */}
       <Suspense fallback={<PhotoListSkeleton />}>
-        <PhotoList photos={photos} />
+        <PhotoList />
       </Suspense>
     </div>
   );

@@ -13,29 +13,49 @@ export default function PhotoList({
   page?: number 
 }) {
   const [photos, setPhotos] = useState<Photo[]>(initialPhotos);
-  const [isLoading, setIsLoading] = useState(initialPhotos.length === 0);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [page, setPage] = useState(initialPage);
   const [totalPages, setTotalPages] = useState(1);
 
   const fetchPhotos = useCallback(async () => {
-    if (initialPhotos.length > 0) return;
+    console.log('Fetching photos', { 
+      initialPhotosLength: initialPhotos.length, 
+      currentPage: page 
+    });
 
     setIsLoading(true);
+    setError(null);
+
     try {
       const response = await fetch(`/api/photos?page=${page}&limit=10`);
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      
       const data = await response.json();
-      setPhotos(data.photos);
-      setTotalPages(data.totalPages);
+      console.log('API Response:', data);
+      
+      if (!data.photos || data.photos.length === 0) {
+        console.warn('No photos returned from API');
+        setError('No photos found');
+      }
+      
+      setPhotos(data.photos || []);
+      setTotalPages(data.totalPages || 1);
     } catch (error) {
       console.error('Failed to fetch photos:', error);
+      setError(error instanceof Error ? error.message : 'An unknown error occurred');
     } finally {
       setIsLoading(false);
     }
-  }, [page, initialPhotos.length]);
+  }, [page]);
 
   useEffect(() => {
+    // Always fetch photos, ignore initial photos
     fetchPhotos();
-  }, [page, fetchPhotos]);
+  }, [fetchPhotos]);
 
   const handleNextPage = useCallback(() => {
     if (page < totalPages) {
@@ -53,43 +73,54 @@ export default function PhotoList({
     return <PhotoListSkeleton />;
   }
 
+  if (error) {
+    return (
+      <div className="text-red-500 text-center py-4">
+        Error loading photos: {error}
+        <button 
+          onClick={fetchPhotos} 
+          className="ml-4 px-4 py-2 bg-blue-500 text-white rounded"
+        >
+          Retry
+        </button>
+      </div>
+    );
+  }
+
   return (
     <div>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 auto-rows-auto">
         {photos.map((photo: Photo) => (
           <BlurImage 
-            key={photo.src}
+            key={photo.id}
             src={photo.src}
             alt={photo.alt}
             aspectRatio={photo.aspectRatio}
-            blurDataURL={photo.blurDataURL}
             category={photo.category}
           />
         ))}
       </div>
 
-      {/* Pagination */}
-      {totalPages > 1 && (
-        <div className="flex justify-center mt-8 space-x-4">
-          <button 
-            onClick={handlePrevPage}
-            disabled={page === 1}
-            className="px-4 py-2 bg-gray-200 dark:bg-gray-700 rounded disabled:opacity-50"
-          >
-            Previous
-          </button>
-          <span className="px-4 py-2">
-            Page {page} of {totalPages}
-          </span>
-          <button 
-            onClick={handleNextPage}
-            disabled={page === totalPages}
-            className="px-4 py-2 bg-gray-200 dark:bg-gray-700 rounded disabled:opacity-50"
-          >
-            Next
-          </button>
-        </div>
-      )}
+      {/* Pagination Controls */}
+      <div className="flex justify-center mt-8 space-x-4">
+        <button 
+          onClick={handlePrevPage} 
+          disabled={page === 1}
+          className="px-4 py-2 bg-gray-200 rounded disabled:opacity-50"
+        >
+          Previous
+        </button>
+        <span className="px-4 py-2">
+          Page {page} of {totalPages}
+        </span>
+        <button 
+          onClick={handleNextPage} 
+          disabled={page === totalPages}
+          className="px-4 py-2 bg-gray-200 rounded disabled:opacity-50"
+        >
+          Next
+        </button>
+      </div>
     </div>
   );
 }
