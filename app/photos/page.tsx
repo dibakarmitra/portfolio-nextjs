@@ -1,10 +1,12 @@
 import React from "react";
 import type { Metadata } from "next";
-import BlurImage from "@/components/blur-image";
+import { Suspense } from 'react';
+import PhotoList from '@/components/photo-list';
+import PhotoListSkeleton from '@/components/skeletons/photo-list-skeleton';
 
 export const metadata: Metadata = {
-  title: 'Photos',
-  description: 'A collection of my photography work and visual experiments',
+  title: "Photos",
+  description: "A curated collection of my photography work and visual experiments",
 };
 
 interface Photo {
@@ -55,7 +57,7 @@ const photos: Photo[] = [
 
 const categories = Array.from(new Set(photos.map(photo => photo.category)));
 
-export default function Photos() {
+export default function PhotosPage() {
   return (
     <div className="py-8">
       {/* Header */}
@@ -66,54 +68,10 @@ export default function Photos() {
         </p>
       </div>
 
-      {/* Categories */}
-      <div className="mb-8 flex flex-wrap gap-2">
-        {categories.map((category) => (
-          <button
-            key={category}
-            className="px-4 py-2 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-orange-100 dark:hover:bg-orange-900 transition-colors"
-          >
-            {category}
-          </button>
-        ))}
-      </div>
-
-      {/* Photo Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 auto-rows-[300px]">
-        {photos.map((photo, index) => (
-          <div
-            key={index}
-            className={`block group relative overflow-hidden rounded-xl ${
-              photo.aspectRatio === 'portrait'
-                ? 'row-span-2'
-                : photo.aspectRatio === 'landscape'
-                ? 'col-span-2'
-                : ''
-            }`}
-          >
-            <div className={`relative w-full h-full`}>
-              <BlurImage
-                src={photo.src}
-                alt={photo.alt}
-                className="object-cover group-hover:scale-110 transition-transform duration-300"
-              />
-              <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-30 transition-opacity duration-300" />
-              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <span className="text-white text-lg font-medium">
-                  {photo.alt}
-                </span>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {/* Load More Button */}
-      <div className="mt-12 text-center">
-        <button className="px-6 py-3 rounded-full bg-orange-500 text-white hover:bg-orange-600 transition-colors">
-          Load More Photos
-        </button>
-      </div>
+      {/* Photos Grid */}
+      <Suspense fallback={<PhotoListSkeleton />}>
+        <PhotoList />
+      </Suspense>
     </div>
   );
 }

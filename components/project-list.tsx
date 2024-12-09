@@ -1,107 +1,148 @@
-import Link from "next/link";
-import type { Project } from "@/lib/projects";
-import styles from "@/styles/animations.module.css";
+'use client';
 
-interface ProjectListProps {
-  projects: Project[];
+import { useState, useEffect } from 'react';
+import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
+import type { Project } from "@/types/project";
+import ProjectListSkeleton from './skeletons/project-list-skeleton';
+
+function formatDate(date: string) {
+  return new Date(date).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long'
+  });
 }
 
-export default function ProjectList({ projects }: ProjectListProps) {
-  return (
-    <section className="mx-auto px-4">
-      <div className="space-y-2 pt-6 pb-8 md:space-y-5">
-        <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
-          Projects
-        </h1>
-        <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
-          Showcase of my latest works and side projects
-        </p>
-      </div>
+export default function ProjectList() {
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
 
-      <div className="divide-y divide-gray-200 dark:divide-gray-700">
-        {projects.map((project, i) => (
-          <article
-            key={project.title}
-            className={`py-6 ${styles.fadeInUp} ${styles[`delay${i + 1}`]}`}
+  useEffect(() => {
+    async function fetchProjects() {
+      try {
+        setIsLoading(true);
+        const response = await fetch(`/api/projects?page=${page}`);
+        
+        if (!response.ok) {
+          throw new Error('Failed to fetch projects');
+        }
+
+        const data = await response.json();
+        setProjects(data.projects);
+        setTotalPages(data.pagination.totalPages);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'An unknown error occurred');
+      } finally {
+        setIsLoading(false);
+      }
+    }
+
+    fetchProjects();
+  }, [page]);
+
+  if (isLoading) {
+    return <ProjectListSkeleton />;
+  }
+
+  if (error) {
+    return (
+      <div className="text-red-500 text-center py-8">
+        {error}
+      </div>
+    );
+  }
+
+  return (
+    <div>
+      <div className="grid grid-cols-1 gap-8">
+        {projects.map((project: Project) => (
+          <div 
+            key={project.id}
+            className="group bg-gray-50 dark:bg-gray-800 rounded-xl p-8 hover:scale-[1.01] transition-all"
           >
-            <div className="space-y-2 xl:grid xl:grid-cols-4 xl:items-baseline xl:space-y-0">
-              <div className="space-y-3 xl:col-span-3">
-                <div>
-                  <h3 className="text-2xl font-bold leading-8 tracking-tight">
-                    {project.demoUrl ? (
-                      <Link
-                        href={project.demoUrl}
-                        className="text-gray-900 dark:text-gray-100 hover:text-blue-600 dark:hover:text-blue-400"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        {project.title}
-                      </Link>
-                    ) : (
-                      <span className="text-gray-900 dark:text-gray-100">
-                        {project.title}
-                      </span>
-                    )}
+            <div className="flex flex-col lg:flex-row gap-8">
+              {/* Project Info */}
+              <div className="flex-grow space-y-4">
+                <div className="flex items-start justify-between">
+                  <h3 className="text-2xl font-bold group-hover:text-orange-500 transition-colors">
+                    {project.title}
                   </h3>
-                  <div className="flex flex-wrap items-center gap-2 mt-2">
-                    {project.date && (
-                      <span className="text-sm text-gray-500 dark:text-gray-400">
-                        {new Date(project.date).toLocaleDateString('en-US', {
-                          year: 'numeric',
-                          month: 'long'
-                        })}
-                      </span>
-                    )}
-                    {project.skills?.map((skill) => (
-                      <span
-                        key={skill}
-                        className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-800 dark:text-blue-100"
-                      >
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
+                  {project.date && (
+                    <span className="text-sm text-gray-600 dark:text-gray-400">
+                      {formatDate(project.date)}
+                    </span>
+                  )}
                 </div>
-                <div className="prose max-w-none text-gray-500 dark:text-gray-400">
+
+                <p className="text-gray-700 dark:text-gray-300 mb-4">
                   {project.description}
+                </p>
+
+                {/* Skills */}
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {project.skills.map((skill, skillIndex) => (
+                    <span 
+                      key={skillIndex}
+                      className="bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-3 py-1 rounded-full text-xs"
+                    >
+                      {skill}
+                    </span>
+                  ))}
                 </div>
+
+                {/* Project Links */}
                 <div className="flex space-x-4">
                   {project.githubUrl && (
-                    <Link
-                      href={project.githubUrl}
-                      className="text-sm text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200"
-                      target="_blank"
+                    <a 
+                      href={project.githubUrl} 
+                      target="_blank" 
                       rel="noopener noreferrer"
+                      className="flex items-center text-gray-700 dark:text-gray-300 hover:text-orange-500 transition-colors"
                     >
-                      GitHub →
-                    </Link>
-                  )}
-                  {project.sourceUrl && (
-                    <Link
-                      href={project.sourceUrl}
-                      className="text-sm text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Source →
-                    </Link>
+                      <FaGithub className="mr-2" /> GitHub
+                    </a>
                   )}
                   {project.demoUrl && (
-                    <Link
-                      href={project.demoUrl}
-                      className="text-sm text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200"
-                      target="_blank"
+                    <a 
+                      href={project.demoUrl} 
+                      target="_blank" 
                       rel="noopener noreferrer"
+                      className="flex items-center text-gray-700 dark:text-gray-300 hover:text-orange-500 transition-colors"
                     >
-                      Live Demo →
-                    </Link>
+                      <FaExternalLinkAlt className="mr-2" /> Demo
+                    </a>
                   )}
                 </div>
               </div>
             </div>
-          </article>
+          </div>
         ))}
       </div>
-    </section>
+
+      {/* Pagination */}
+      {totalPages > 1 && (
+        <div className="flex justify-center mt-8 space-x-4">
+          <button 
+            onClick={() => setPage(prev => Math.max(1, prev - 1))}
+            disabled={page === 1}
+            className="px-4 py-2 bg-gray-200 dark:bg-gray-700 rounded disabled:opacity-50"
+          >
+            Previous
+          </button>
+          <span className="px-4 py-2">
+            Page {page} of {totalPages}
+          </span>
+          <button 
+            onClick={() => setPage(prev => Math.min(totalPages, prev + 1))}
+            disabled={page === totalPages}
+            className="px-4 py-2 bg-gray-200 dark:bg-gray-700 rounded disabled:opacity-50"
+          >
+            Next
+          </button>
+        </div>
+      )}
+    </div>
   );
 }

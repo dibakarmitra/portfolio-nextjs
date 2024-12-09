@@ -4,6 +4,7 @@ export interface Photo {
   alt: string;
   width: number;
   height: number;
+  aspectRatio?: 'portrait' | 'landscape' | 'square';
   blurDataURL?: string;
   category?: string;
 }
