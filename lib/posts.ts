@@ -2,9 +2,12 @@ import { NotePost } from '@/types/notes';
 import matter from "gray-matter";
 import fs from 'fs/promises';
 import path from "path";
-import { v4 as uuidv4 } from 'uuid';
+import { v5 as uuidv5 } from 'uuid';
 
 export type { NotePost };
+
+// Namespace for generating consistent UUIDs
+const POSTS_NAMESPACE = '6ba7b812-9dad-11d1-80b4-00c04fd430c8';
 
 async function getMDXFiles(dir: string) {
   const files = await fs.readdir(dir);
@@ -17,7 +20,7 @@ async function readMDXFile(filePath: string): Promise<NotePost> {
   const slug = path.basename(filePath, path.extname(filePath));
 
   return {
-    id: uuidv4(),
+    id: uuidv5(slug, POSTS_NAMESPACE),
     slug,
     title: data.title,
     date: data.date || data.publishedAt || new Date().toISOString(),

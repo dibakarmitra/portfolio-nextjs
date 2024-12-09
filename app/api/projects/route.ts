@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getProjects, getProjectById, getFeaturedProjects } from '@/lib/projects';
+import { getProjects, getProjectById } from '@/lib/projects';
 
 // Simulated projects database (replace with actual database in production)
 const projects = [
@@ -25,6 +25,14 @@ export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const id = searchParams.get('id');
   const featured = searchParams.get('featured');
+  
+  // Pagination parameters
+  const page = searchParams.get('page') 
+    ? parseInt(searchParams.get('page') as string, 10) 
+    : 1;
+  const limit = searchParams.get('limit') 
+    ? parseInt(searchParams.get('limit') as string, 10) 
+    : 10;
 
   if (id) {
     const project = getProjectById(id);
@@ -33,13 +41,27 @@ export async function GET(request: NextRequest) {
       : NextResponse.json({ error: 'Project not found' }, { status: 404 });
   }
 
-  if (featured !== null) {
-    const projects = getFeaturedProjects();
-    return NextResponse.json(projects);
-  }
-
-  const projects = getProjects();
-  return NextResponse.json(projects);
+  // Fetch paginated projects
+  const { 
+    projects: fetchedProjects, 
+    totalProjects, 
+    totalPages, 
+    currentPage 
+  } = getProjects(
+    page, 
+    limit, 
+    featured !== null ? featured === 'true' : undefined
+  );
+  
+  return NextResponse.json({
+    projects: fetchedProjects,
+    pagination: {
+      totalProjects,
+      totalPages,
+      currentPage,
+      pageSize: limit
+    }
+  });
 }
 
 // Placeholder for other methods to maintain API consistency

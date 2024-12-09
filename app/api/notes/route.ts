@@ -5,6 +5,14 @@ export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const slug = searchParams.get('slug');
   const id = searchParams.get('id');
+  
+  // Pagination parameters
+  const page = searchParams.get('page') 
+    ? parseInt(searchParams.get('page') as string, 10) 
+    : 1;
+  const limit = searchParams.get('limit') 
+    ? parseInt(searchParams.get('limit') as string, 10) 
+    : 10;
 
   if (id) {
     const note = await getPostById(id);
@@ -20,8 +28,18 @@ export async function GET(request: NextRequest) {
       : NextResponse.json({ error: 'Note not found' }, { status: 404 });
   }
 
-  const notes = await getAllPosts();
-  return NextResponse.json(notes);
+  // Fetch paginated notes
+  const { posts, totalPosts, totalPages, currentPage } = await getAllPosts(page, limit);
+  
+  return NextResponse.json({
+    posts,
+    pagination: {
+      totalPosts,
+      totalPages,
+      currentPage,
+      pageSize: limit
+    }
+  });
 }
 
 // Placeholder for other methods to maintain API consistency

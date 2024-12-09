@@ -1,6 +1,6 @@
 // /app/projects/notes-page.tsx
 import { getProjects } from "@/lib/projects";
-import type { Project } from "@/lib/projects"; 
+import type { Project } from "@/types/project"; 
 import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
 
 export const metadata = {
@@ -16,7 +16,7 @@ function formatDate(date: string) {
 }
 
 export default function ProjectsPage() {
-  const projects = getProjects();
+  const { projects } = getProjects();
   
   return (
     <div className="py-8">
@@ -32,7 +32,7 @@ export default function ProjectsPage() {
       <div className="grid grid-cols-1 gap-8">
         {projects.map((project: Project, index: number) => (
           <div 
-            key={index}
+            key={project.id}
             className="group bg-gray-50 dark:bg-gray-800 rounded-xl p-8 hover:scale-[1.01] transition-all"
           >
             <div className="flex flex-col lg:flex-row gap-8">
@@ -49,71 +49,49 @@ export default function ProjectsPage() {
                   )}
                 </div>
 
-                <p className="text-gray-600 dark:text-gray-400 text-lg">
+                <p className="text-gray-700 dark:text-gray-300 mb-4">
                   {project.description}
                 </p>
 
                 {/* Skills */}
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-2 mb-4">
                   {project.skills.map((skill, skillIndex) => (
                     <span 
                       key={skillIndex}
-                      className="px-3 py-1 bg-gray-200 dark:bg-gray-700 rounded-full text-sm"
+                      className="bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-3 py-1 rounded-full text-xs"
                     >
                       {skill}
                     </span>
                   ))}
                 </div>
 
-                {/* Links */}
-                <div className="flex gap-4 pt-4">
-                  <a
-                    href={project.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-orange-500 transition-colors"
-                  >
-                    <FaGithub size={20} />
-                    <span>View Code</span>
-                  </a>
-                  {project.demoUrl && (
-                    <a
-                      href={project.demoUrl}
-                      target="_blank"
+                {/* Project Links */}
+                <div className="flex space-x-4">
+                  {project.githubUrl && (
+                    <a 
+                      href={project.githubUrl} 
+                      target="_blank" 
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-orange-500 transition-colors"
+                      className="flex items-center text-gray-700 dark:text-gray-300 hover:text-orange-500 transition-colors"
                     >
-                      <FaExternalLinkAlt size={18} />
-                      <span>Live Demo</span>
+                      <FaGithub className="mr-2" /> GitHub
                     </a>
                   )}
-                </div>
-              </div>
-
-              {/* Project Preview */}
-              <div className="lg:w-1/2 aspect-video bg-gray-200 dark:bg-gray-700 rounded-xl overflow-hidden">
-                <div className="w-full h-full bg-gradient-to-br from-orange-100 to-orange-50 dark:from-orange-900 dark:to-orange-800 flex items-center justify-center">
-                  <span className="text-2xl font-bold text-orange-500">
-                    {project.title.split('.')[0]}
-                  </span>
+                  {project.demoUrl && (
+                    <a 
+                      href={project.demoUrl} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="flex items-center text-gray-700 dark:text-gray-300 hover:text-orange-500 transition-colors"
+                    >
+                      <FaExternalLinkAlt className="mr-2" /> Demo
+                    </a>
+                  )}
                 </div>
               </div>
             </div>
           </div>
         ))}
-      </div>
-
-      {/* Call to Action */}
-      <div className="mt-12 text-center">
-        <a 
-          href="https://github.com/dibakarmitra"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-orange-500 transition-colors"
-        >
-          <FaGithub size={24} />
-          <span>View More Projects on GitHub</span>
-        </a>
       </div>
     </div>
   );
