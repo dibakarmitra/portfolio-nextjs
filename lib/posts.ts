@@ -2,6 +2,7 @@ import { NotePost } from '@/types/notes';
 import matter from "gray-matter";
 import fs from 'fs/promises';
 import path from "path";
+import { v4 as uuidv4 } from 'uuid';
 
 export type { NotePost };
 
@@ -16,6 +17,7 @@ async function readMDXFile(filePath: string): Promise<NotePost> {
   const slug = path.basename(filePath, path.extname(filePath));
 
   return {
+    id: uuidv4(),
     slug,
     title: data.title,
     date: data.date || data.publishedAt || new Date().toISOString(),
@@ -54,54 +56,51 @@ export async function getNotePosts(): Promise<NotePost[]> {
 }
 
 export async function getNotePost(slug: string): Promise<NotePost | null> {
-  const postsDirectory = path.join(process.cwd(), "contents");
-  const fullPath = path.join(postsDirectory, `${slug}.mdx`);
+  const postsDirectory = path.join(process.cwd(), 'contents');
+  const filePath = path.join(postsDirectory, `${slug}.mdx`);
 
   try {
-    return await readMDXFile(fullPath);
+    return await readMDXFile(filePath);
   } catch (error) {
-    console.error(`Error reading note post: ${slug}`, error);
+    console.error(`Error reading post ${slug}:`, error);
     return null;
   }
 }
 
 export function formatDate(date: string, includeRelative = false) {
-  try {
-    const currentDate = new Date();
-    const targetDate = new Date(date);
+  const parsedDate = new Date(date);
+  const formatter = new Intl.DateTimeFormat('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
 
-    if (!includeRelative) {
-      return new Intl.DateTimeFormat('en-US', {
-        month: 'short',
-        day: 'numeric',
-        year: 'numeric'
-      }).format(targetDate);
-    }
+  const formattedDate = formatter.format(parsedDate);
 
-    const formatter = new Intl.RelativeTimeFormat('en', { numeric: 'auto' });
-    const diffInMilliseconds = targetDate.getTime() - currentDate.getTime();
-    const diffInDays = Math.round(diffInMilliseconds / (1000 * 60 * 60 * 24));
-    const diffInMonths = Math.round(diffInDays / 30);
-    const diffInYears = Math.round(diffInDays / 365);
-
+  if (includeRelative) {
+    const now = new Date();
+    const diffInDays = Math.floor((now.getTime() - parsedDate.getTime()) / (1000 * 3600 * 24));
+    
     let relativeTime = '';
-    if (Math.abs(diffInYears) >= 1) {
-      relativeTime = formatter.format(diffInYears, 'year');
-    } else if (Math.abs(diffInMonths) >= 1) {
-      relativeTime = formatter.format(diffInMonths, 'month');
-    } else if (!isNaN(diffInDays)) {
-      relativeTime = formatter.format(diffInDays, 'day');
+    if (diffInDays === 0) {
+      relativeTime = 'Today';
+    } else if (diffInDays === 1) {
+      relativeTime = 'Yesterday';
+    } else if (diffInDays < 7) {
+      relativeTime = `${diffInDays} days ago`;
+    } else if (diffInDays < 30) {
+      const weeks = Math.floor(diffInDays / 7);
+      relativeTime = `${weeks} week${weeks > 1 ? 's' : ''} ago`;
+    } else if (diffInDays < 365) {
+      const months = Math.floor(diffInDays / 30);
+      relativeTime = `${months} month${months > 1 ? 's' : ''} ago`;
+    } else {
+      const years = Math.floor(diffInDays / 365);
+      relativeTime = `${years} year${years > 1 ? 's' : ''} ago`;
     }
 
-    const fullDate = new Intl.DateTimeFormat('en-US', {
-      month: 'short',
-      day: 'numeric',
-      year: 'numeric'
-    }).format(targetDate);
-
-    return includeRelative && relativeTime ? `${fullDate} (${relativeTime})` : fullDate;
-  } catch (error) {
-    console.error('Error formatting date:', error);
-    return date;
+    return `${formattedDate} (${relativeTime})`;
   }
+
+  return formattedDate;
 }

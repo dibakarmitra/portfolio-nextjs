@@ -1,4 +1,5 @@
 export interface NotePost {
+  id: string;
   slug: string;
   title: string;
   date: string;

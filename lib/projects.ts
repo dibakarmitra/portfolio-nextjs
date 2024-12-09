@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from 'uuid';
 import { Project } from '@/types/project';
 
 export type { Project };
@@ -5,6 +6,7 @@ export type { Project };
 export function getProjects(): Project[] {
   const projects = [
     {
+      id: uuidv4(),
       title: "TalentPlace.ai",
       description: "AI-powered resume builder and job portal with advanced candidate matching and skill assessment capabilities.",
       skills: ["ReactJS", "Laravel", "MySQL", "OpenAI", "AI Integration"],
@@ -15,6 +17,7 @@ export function getProjects(): Project[] {
       image: "/projects/placeholder.svg"
     },
     {
+      id: uuidv4(),
       title: "PRECAMPAIGN",
       description: "Enterprise-level campaign management platform with sophisticated domain management and scalable microservices architecture.",
       skills: ["Laravel", "MongoDB", "React", "Docker", "Microservices"],
@@ -24,6 +27,7 @@ export function getProjects(): Project[] {
       image: "/projects/placeholder.svg"
     },
     {
+      id: uuidv4(),
       title: "Database Optimization Framework",
       description: "High-performance database optimization framework with advanced query analysis and automated performance tuning.",
       skills: ["Python", "MySQL", "PostgreSQL", "Redis", "Performance Optimization"],
@@ -32,6 +36,7 @@ export function getProjects(): Project[] {
       image: "/projects/placeholder.svg"
     },
     {
+      id: uuidv4(),
       title: "Portfolio Website",
       description: "Personal portfolio built with Next.js, showcasing professional projects, skills, and experience with modern web technologies.",
       skills: ["Next.js", "TypeScript", "TailwindCSS", "React", "Vercel"],
@@ -42,6 +47,7 @@ export function getProjects(): Project[] {
       image: "/projects/placeholder.svg"
     },
     {
+      id: uuidv4(),
       title: "Jobs.TalentPlace.ai",
       description: "AI-driven job matching platform with advanced resume parsing and automated skill assessment.",
       skills: ["Django", "ReactJS", "PostgreSQL", "OpenAI", "Machine Learning"],
@@ -61,4 +67,12 @@ export function getProjects(): Project[] {
     // Compare dates in descending order
     return new Date(b.date).getTime() - new Date(a.date).getTime();
   });
+}
+
+export function getProjectById(id: string): Project | undefined {
+  return getProjects().find(project => project.id === id);
+}
+
+export function getFeaturedProjects(): Project[] {
+  return getProjects().filter(project => project.featured);
 }
