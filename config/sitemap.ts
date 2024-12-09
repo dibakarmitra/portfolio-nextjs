@@ -1,21 +1,30 @@
-import { MetadataRoute } from "next";
-import { getNotePosts } from "@/lib/posts";
-import { metaData } from "@/config/metadata";
+import { MetadataRoute } from 'next';
+import { getNotePosts } from '@/lib/posts';
+import { metaData } from '@/config/metadata';
 
 const BaseUrl = metaData.baseUrl.endsWith("/")
   ? metaData.baseUrl
   : `${metaData.baseUrl}/`;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  let blogs = getNotePosts().map((post) => ({
+  let blogs = (await getNotePosts()).map((post) => ({
     url: `${BaseUrl}notes/${post.slug}`,
     lastModified: post.date,
   }));
 
-  let routes = ["", "notes", "projects", "photos"].map((route) => ({
-    url: `${BaseUrl}${route}`,
-    lastModified: new Date().toISOString().split("T")[0],
-  }));
-
-  return [...routes, ...blogs];
+  return [
+    {
+      url: BaseUrl,
+      lastModified: new Date(),
+    },
+    {
+      url: `${BaseUrl}projects`,
+      lastModified: new Date(),
+    },
+    {
+      url: `${BaseUrl}notes`,
+      lastModified: new Date(),
+    },
+    ...blogs,
+  ];
 }

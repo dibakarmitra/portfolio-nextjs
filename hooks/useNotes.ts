@@ -1,13 +1,15 @@
+"use client";
+
 import { useState, useEffect } from 'react';
 import { NotePost } from '@/types/notes';
-import { getAllPosts, getPostBySlug } from '../lib/notes';
+import { getNotePosts } from '../lib/posts';
 
 export function useNotes() {
     const [posts, setPosts] = useState<NotePost[]>([]);
 
     useEffect(() => {
         const fetchPosts = async () => {
-            const fetchedPosts = await getAllPosts();
+            const fetchedPosts = await getNotePosts();
             setPosts(fetchedPosts);
         };
         fetchPosts();

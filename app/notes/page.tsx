@@ -1,4 +1,4 @@
-// app/notes/notes-page.tsx
+// app/notes/page.tsx
 import { getNotePosts } from "@/lib/posts";
 import Link from "next/link";
 import type { NotePost } from "@/types/notes";
@@ -16,8 +16,8 @@ function formatDate(date: string) {
   });
 }
 
-export default function NotesPage({ searchParams }: { searchParams: { page?: string } }) {
-  const posts = getNotePosts();
+export default async function NotesPage({ searchParams }: { searchParams: { page?: string } }) {
+  const posts = await getNotePosts();
   
   // Pagination logic
   const pageSize = 9;
@@ -49,21 +49,19 @@ export default function NotesPage({ searchParams }: { searchParams: { page?: str
                 <h3 className="text-xl font-bold mb-3 group-hover:text-orange-500 transition-colors">
                   {post.title}
                 </h3>
-                <p className="text-gray-600 dark:text-gray-400 mb-4 flex-grow">
+                <p className="text-gray-600 dark:text-gray-400 mb-4 line-clamp-3">
                   {post.excerpt}
                 </p>
-                {post.tags && post.tags.length > 0 && (
-                  <div className="flex flex-wrap gap-2 mt-auto">
-                    {post.tags.map((tag, tagIndex) => (
-                      <span 
-                        key={tagIndex}
-                        className="px-3 py-1 bg-gray-200 dark:bg-gray-700 rounded-full text-sm"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                )}
+                <div className="mt-auto flex flex-wrap gap-2">
+                  {post.tags.map((tag, tagIndex) => (
+                    <span 
+                      key={tagIndex} 
+                      className="bg-gray-200 dark:bg-gray-700 text-xs px-2 py-1 rounded-full"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
           </Link>
@@ -72,15 +70,15 @@ export default function NotesPage({ searchParams }: { searchParams: { page?: str
 
       {/* Pagination */}
       {totalPages > 1 && (
-        <div className="flex justify-center gap-2">
+        <div className="flex justify-center space-x-2 mt-8">
           {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNum) => (
-            <Link
-              key={pageNum}
+            <Link 
+              key={pageNum} 
               href={`/notes?page=${pageNum}`}
-              className={`px-4 py-2 rounded-lg transition-colors ${
-                pageNum === page
-                  ? 'bg-orange-500 text-white'
-                  : 'bg-gray-100 dark:bg-gray-800 hover:bg-orange-100 dark:hover:bg-gray-700'
+              className={`px-4 py-2 rounded-md ${
+                pageNum === page 
+                  ? 'bg-orange-500 text-white' 
+                  : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300'
               }`}
             >
               {pageNum}

@@ -41,8 +41,11 @@ export async function GET(
   const allPosts = await getNotePosts();
 
   allPosts.forEach((post: NotePost) => {
-    const postUrl = `${BaseUrl}blog/${post.slug}`;
+    const postUrl = `${BaseUrl}notes/${post.slug}`;
     const categories = Array.isArray(post.tags) ? post.tags.map((tag) => tag.trim()) : [];
+
+    const postDate = new Date(post.date);
+    const isValidDate = !isNaN(postDate.getTime());
 
     feed.addItem({
       title: post.title,
@@ -62,7 +65,7 @@ export async function GET(
         name: tag,
         term: tag, // Optional: Use if you need additional metadata.
       })),
-      date: new Date(post.date),
+      date: isValidDate ? postDate : new Date(),
     });
   });
 

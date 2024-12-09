@@ -1,69 +1,66 @@
 import { NotePost } from '@/types/notes';
-import fs from "fs";
-import path from "path";
 import matter from "gray-matter";
+import fs from 'fs/promises';
+import path from "path";
 
 export type { NotePost };
 
-function getMDXFiles(dir: string) {
-  return fs.readdirSync(dir).filter((file) => path.extname(file) === ".mdx");
+async function getMDXFiles(dir: string) {
+  const files = await fs.readdir(dir);
+  return files.filter((file) => path.extname(file) === ".mdx");
 }
 
-function readMDXFile(filePath: string): NotePost {
-  const rawContent = fs.readFileSync(filePath, "utf-8");
+async function readMDXFile(filePath: string): Promise<NotePost> {
+  const rawContent = await fs.readFile(filePath, "utf-8");
   const { data, content } = matter(rawContent);
   const slug = path.basename(filePath, path.extname(filePath));
 
   return {
     slug,
     title: data.title,
-    date: data.date,
-    excerpt: data.excerpt,
-    tags: data.tags || [],
+    date: data.date || data.publishedAt || new Date().toISOString(),
+    excerpt: data.summary || data.description || '',
+    tags: data.tags ? (Array.isArray(data.tags) ? data.tags : data.tags.split(',').map((tag: string) => tag.trim())) : [],
     content,
     image: data.image,
   };
 }
 
-export function getNotePosts(): NotePost[] {
-  const postsDirectory = path.join(process.cwd(), 'app/content/blog');
-  const fileNames = fs.readdirSync(postsDirectory);
-  const allPostsData = fileNames
-    .filter(fileName => fileName.endsWith('.mdx'))
-    .map(fileName => {
-      const slug = fileName.replace(/\.mdx$/, '');
-      const fullPath = path.join(postsDirectory, fileName);
-      const fileContents = fs.readFileSync(fullPath, 'utf8');
-      const { data, content } = matter(fileContents);
+export async function getNotePosts(): Promise<NotePost[]> {
+  const postsDirectory = path.join(process.cwd(), 'contents');
+  
+  try {
+    const fileNames = await fs.readdir(postsDirectory);
+    const allPostsData = await Promise.all(fileNames
+      .filter(fileName => fileName.endsWith('.mdx'))
+      .map(async (fileName) => {
+        const fullPath = path.join(postsDirectory, fileName);
+        return readMDXFile(fullPath);
+      }));
 
-      return {
-        slug,
-        title: data.title,
-        date: data.date,
-        excerpt: data.excerpt,
-        tags: data.tags || [],
-        content,
-        image: data.image,
-      } as NotePost;
+    return allPostsData.sort((a, b) => {
+      if (a.date < b.date) {
+        return 1;
+      } else if (a.date > b.date) {
+        return -1;
+      } else {
+        return 0;
+      }
     });
-
-  return allPostsData.sort((a, b) => {
-    if (a.date < b.date) {
-      return 1;
-    } else {
-      return -1;
-    }
-  });
+  } catch (error) {
+    console.error('Error reading posts:', error);
+    return [];
+  }
 }
 
-export function getNotePost(slug: string): NotePost | null {
-  const postsDirectory = path.join(process.cwd(), "app/content/blog");
+export async function getNotePost(slug: string): Promise<NotePost | null> {
+  const postsDirectory = path.join(process.cwd(), "contents");
   const fullPath = path.join(postsDirectory, `${slug}.mdx`);
 
   try {
-    return readMDXFile(fullPath);
+    return await readMDXFile(fullPath);
   } catch (error) {
-    console.error(`Error reading blog post ${slug}:`, error);
+    console.error(`Error reading note post: ${slug}`, error);
     return null;
   }
 }
