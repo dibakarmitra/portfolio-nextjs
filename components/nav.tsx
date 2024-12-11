@@ -9,12 +9,12 @@ import { usePathname } from 'next/navigation';
 import { GLOBAL_EVENTS } from "@/config/global-events";
 import { format, isWithinInterval, addDays, subDays } from 'date-fns';
 import { 
-  FaCalendarStar, FaBook, FaFlag, FaDragon, FaMoon, 
-  FaPalette, FaFemale, FaCross, FaEgg, FaMosque, 
-  FaMedicalCross, FaStarOfDavid, FaEarth, FaIndustry, 
-  FaLotus, FaLeaf, FaCrescentMoon, FaCanadianMapleLeaf, 
-  FaFlagUsa, FaPeace, FaUtensils, FaPumpkin, FaLampDiwali, 
-  FaTurkey, FaRunning, FaMenorah, FaTree 
+  FaCalendarCheck, FaBook, FaFlag, FaDragon, FaMoon, 
+  FaPalette, FaVenusMars, FaCross, FaEgg, FaMosque, 
+  FaFirstAid, FaStar, FaGlobe, FaIndustry, 
+  FaLeaf, FaLeaf as FaLotus, FaRegMoon, FaCanadianMapleLeaf, 
+  FaFlagUsa, FaPeace, FaUtensils, FaPizzaSlice, FaLightbulb, 
+  FaFeatherAlt, FaMenorah, FaTree 
 } from 'react-icons/fa';
 
 interface NavItem {
@@ -31,33 +31,33 @@ const navItems: NavItem[] = [
 ];
 
 const iconMap = {
-  "calendar-star": FaCalendarStar,
+  "calendar-star": FaCalendarCheck,
   "book": FaBook,
   "india-flag": FaFlag,
   "australia-flag": FaFlag,
   "dragon": FaDragon,
-  "moon": FaMoon,
+  "moon": FaRegMoon,
   "color-palette": FaPalette,
-  "female": FaFemale,
+  "female": FaVenusMars,
   "cross": FaCross,
   "egg": FaEgg,
   "mosque": FaMosque,
-  "medical-cross": FaMedicalCross,
-  "star-of-david": FaStarOfDavid,
-  "earth": FaEarth,
+  "medical-cross": FaFirstAid,
+  "star-of-david": FaStar,
+  "earth": FaGlobe,
   "workers": FaIndustry,
   "lotus": FaLotus,
   "leaf": FaLeaf,
-  "crescent-moon": FaCrescentMoon,
-  "refugee": FaRunning,
+  "crescent-moon": FaRegMoon,
+  "refugee": FaFeatherAlt,
   "canada-flag": FaCanadianMapleLeaf,
   "usa-flag": FaFlagUsa,
   "peace": FaPeace,
   "food": FaUtensils,
-  "pumpkin": FaPumpkin,
-  "diya-lamp": FaLampDiwali,
-  "turkey": FaTurkey,
-  "human-rights": FaRunning,
+  "pumpkin": FaPizzaSlice,
+  "diya-lamp": FaLightbulb,
+  "turkey": FaFeatherAlt,
+  "human-rights": FaFeatherAlt,
   "menorah": FaMenorah,
   "christmas-tree": FaTree
 };
