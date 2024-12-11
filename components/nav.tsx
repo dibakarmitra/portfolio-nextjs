@@ -6,6 +6,16 @@ import { memo } from 'react';
 import { useState, useEffect } from 'react';
 import { FiMenu, FiX } from 'react-icons/fi';
 import { usePathname } from 'next/navigation';
+import { GLOBAL_EVENTS } from "@/config/global-events";
+import { format, isWithinInterval, addDays, subDays } from 'date-fns';
+import { 
+  FaCalendarStar, FaBook, FaFlag, FaDragon, FaMoon, 
+  FaPalette, FaFemale, FaCross, FaEgg, FaMosque, 
+  FaMedicalCross, FaStarOfDavid, FaEarth, FaIndustry, 
+  FaLotus, FaLeaf, FaCrescentMoon, FaCanadianMapleLeaf, 
+  FaFlagUsa, FaPeace, FaUtensils, FaPumpkin, FaLampDiwali, 
+  FaTurkey, FaRunning, FaMenorah, FaTree 
+} from 'react-icons/fa';
 
 interface NavItem {
   name: string;
@@ -19,6 +29,38 @@ const navItems: NavItem[] = [
   { path: "/photos", name: "Photos" },
   { path: "/resume", name: "Resume" },
 ];
+
+const iconMap = {
+  "calendar-star": FaCalendarStar,
+  "book": FaBook,
+  "india-flag": FaFlag,
+  "australia-flag": FaFlag,
+  "dragon": FaDragon,
+  "moon": FaMoon,
+  "color-palette": FaPalette,
+  "female": FaFemale,
+  "cross": FaCross,
+  "egg": FaEgg,
+  "mosque": FaMosque,
+  "medical-cross": FaMedicalCross,
+  "star-of-david": FaStarOfDavid,
+  "earth": FaEarth,
+  "workers": FaIndustry,
+  "lotus": FaLotus,
+  "leaf": FaLeaf,
+  "crescent-moon": FaCrescentMoon,
+  "refugee": FaRunning,
+  "canada-flag": FaCanadianMapleLeaf,
+  "usa-flag": FaFlagUsa,
+  "peace": FaPeace,
+  "food": FaUtensils,
+  "pumpkin": FaPumpkin,
+  "diya-lamp": FaLampDiwali,
+  "turkey": FaTurkey,
+  "human-rights": FaRunning,
+  "menorah": FaMenorah,
+  "christmas-tree": FaTree
+};
 
 const NavLink = memo(({ path, name, onLinkClick }: NavItem & { onLinkClick?: () => void }) => {
   const pathname = usePathname();
@@ -51,6 +93,46 @@ const NavLink = memo(({ path, name, onLinkClick }: NavItem & { onLinkClick?: () 
   );
 });
 NavLink.displayName = 'NavLink';
+
+const GlobalEventsDisplay = memo(() => {
+  // Get current date
+  const today = new Date();
+  
+  // Filter events within their display window
+  const upcomingEvents = GLOBAL_EVENTS.filter(event => {
+    const eventDate = new Date(event.date);
+    return isWithinInterval(today, {
+      start: subDays(eventDate, event.showDaysBefore || 0),
+      end: addDays(eventDate, event.showDaysAfter || 0)
+    });
+  }).slice(0, 1);  // Limit to first event if multiple
+
+  if (upcomingEvents.length === 0) return null;
+
+  return (
+    <div className="flex items-center space-x-2">
+      {upcomingEvents.map((event, index) => {
+        const EventIcon = iconMap[event.icon as keyof typeof iconMap] || FaLeaf;
+        return (
+          <div 
+            key={`${event.name}-${index}`} 
+            className="group relative flex items-center"
+            title={`${event.name} on ${format(new Date(event.date), 'MMM d, yyyy')}`}
+          >
+            <EventIcon 
+              className="text-3xl text-green-700 dark:text-green-400 
+                         opacity-100 cursor-help 
+                         animate-bounce" 
+            />
+            <span className="ml-2 text-sm text-green-800 dark:text-green-200">
+              {event.name}
+            </span>
+          </div>
+        );
+      })}
+    </div>
+  );
+});
 
 export const Navbar = memo(function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -99,6 +181,7 @@ export const Navbar = memo(function Navbar() {
             {navItems.slice(1).map((item) => (
               <NavLink key={item.path} {...item} />
             ))}
+            <GlobalEventsDisplay />
           </div>
 
           {/* Mobile menu button */}
@@ -123,6 +206,9 @@ export const Navbar = memo(function Navbar() {
                 <NavLink {...item} onLinkClick={closeMenu} />
               </div>
             ))}
+            <div className="px-2">
+              <GlobalEventsDisplay />
+            </div>
           </div>
         </div>
       </div>
