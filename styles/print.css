@@ -1,0 +1,90 @@
+@media print {
+    html {
+        width: 210mm;
+        height: 297mm;
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+        width: 210mm;
+        height: 297mm;
+    }
+
+    body * {
+        visibility: hidden;
+        margin: 0;
+        padding: 0;
+    }
+
+    #resume,
+    #resume * {
+        visibility: visible;
+    }
+
+    #resume {
+        position: absolute;
+        left: 15mm;
+        top: 15mm;
+        width: 180mm; /* Accounting for margins */
+        height: 267mm;
+        margin: 0;
+        padding: 0;
+        overflow: visible;
+    }
+
+    /* Ensure text doesn't get cut off */
+    @page {
+        size: A4;
+        margin: 15mm;
+        margin-top: 15mm;
+        margin-bottom: 15mm;
+        margin-left: 15mm;
+        margin-right: 15mm;
+        @top-left { content: none; }
+        @top-right { content: none; }
+        @bottom-left { content: none; }
+        @bottom-right { content: none; }
+    }
+
+    /* Optional: Remove unnecessary elements during print */
+    .no-print {
+        display: none !important;
+    }
+
+    /* Ensure links don't show underlined or colored */
+    a {
+        color: inherit;
+        text-decoration: none;
+    }
+
+    @page {
+        size: A4; /* landscape Change to landscape orientation */
+        margin: 15mm;
+        marks: none;
+        bleed: 0;
+    }
+
+    /* Ensure consistent margins for first and subsequent pages */
+    @page :first {
+        margin-top: 15mm;
+        margin-bottom: 15mm;
+    }
+
+    @page :left {
+        margin-top: 15mm;
+        margin-bottom: 15mm;
+    }
+
+    @page :right {
+        margin-top: 15mm;
+        margin-bottom: 15mm;
+    }
+
+    /* Completely remove browser decorations */
+    html, body {
+        margin: 0 !important;
+        padding: 0 !important;
+        height: 100%;
+    }
+}

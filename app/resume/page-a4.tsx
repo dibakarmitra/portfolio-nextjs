@@ -1,6 +1,3 @@
-import { FaGithub, FaLinkedin, FaTwitter, FaDownload } from 'react-icons/fa';
-import { HiMail, HiLocationMarker, HiPhone } from 'react-icons/hi';
-import { ResumeSkills } from '@/types/resume';
 import { resumeData } from '@/lib/resume';
 
 export const metadata = {

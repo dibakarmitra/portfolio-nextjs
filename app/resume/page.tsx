@@ -1,6 +1,6 @@
+import "@/styles/print.css";
 import { FaGithub, FaLinkedin, FaTwitter, FaDownload } from 'react-icons/fa';
 import { HiMail, HiLocationMarker, HiPhone } from 'react-icons/hi';
-import { ResumeSkills } from '@/types/resume';
 import { resumeData } from '@/lib/resume';
 
 export const metadata = {
@@ -10,12 +10,12 @@ export const metadata = {
 
 export default function ResumePage() {
   return (
-    <div className="py-8 max-w-5xl mx-auto">
+    <div id="resume" className="py-8 max-w-5xl mx-auto">
       {/* Header */}
       <div className="mb-12">
         <h1 className="text-4xl font-bold mb-4">{resumeData.name}</h1>
         <h2 className="text-2xl text-gray-600 dark:text-gray-400 mb-4">{resumeData.title}</h2>
-        
+
         <div className="flex flex-wrap gap-4 text-gray-600 dark:text-gray-400 mb-6">
           <a href={`mailto:${resumeData.email}`} className="flex items-center gap-2 hover:text-orange-500">
             <HiMail className="text-lg" />
@@ -67,7 +67,7 @@ export default function ResumePage() {
           {resumeData.about}
         </p>
 
-        <button className="flex items-center gap-2 px-6 py-3 bg-orange-500 text-white rounded-full hover:bg-orange-600 transition-colors">
+        <button className="print:hidden flex items-center gap-2 px-6 py-3 bg-orange-500 text-white rounded-full hover:bg-orange-600 transition-colors">
           <FaDownload />
           <span>Download Resume</span>
         </button>
@@ -104,8 +104,8 @@ export default function ResumePage() {
             <h3 className="text-xl font-bold mb-4">Languages</h3>
             <div className="grid grid-cols-1 gap-3">
               {resumeData.languages.map((lang, index) => (
-                <div 
-                  key={index} 
+                <div
+                  key={index}
                   className="flex items-center justify-between p-3 bg-gradient-to-r from-gray-50 to-gray-100 dark:from-gray-800/50 dark:to-gray-800/30 rounded-lg hover:from-orange-50 hover:to-orange-100 dark:hover:from-orange-900/20 dark:hover:to-orange-900/10 transition-colors group"
                 >
                   <div className="flex items-center gap-3">
