@@ -40,6 +40,13 @@ export interface ResumeLanguage {
   level: string;
 }
 
+export interface ResumeProject {
+  title: string;
+  description: string;
+  technologies: string[];
+  url?: string | null;
+}
+
 export interface ResumeData {
   name: string;
   title: string;
@@ -47,10 +54,12 @@ export interface ResumeData {
   phone?: string;
   location: string;
   about: string;
+  summary: string;
   socialLinks: ResumeSocialLinks;
   skills: ResumeSkills;
   experience: ResumeExperience[];
   education: ResumeEducation[];
   certifications: ResumeCertification[];
   languages: ResumeLanguage[];
+  projects: ResumeProject[];
 }

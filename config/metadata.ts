@@ -15,7 +15,7 @@ export const metaData = {
     "RESTful API Design",
     "Web Development",
     "Database Management",
-    "Service Integration"
+    "Server-Side Development",
   ],
   companies: [
     {

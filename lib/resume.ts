@@ -1,5 +1,11 @@
 import { ResumeData } from '@/types/resume';
 
+const calculateYearsOfExperience = () => {
+  const startYear = 2018;
+  const currentYear = new Date().getFullYear();
+  return currentYear - startYear;
+};
+
 export const resumeData: ResumeData = {
   name: "Dibakar Mitra",
   title: "Software Developer",
@@ -7,6 +13,7 @@ export const resumeData: ResumeData = {
   phone: "+91 7278589051",
   location: "Kolkata, India",
   about: "Experienced Software Developer with expertise in building scalable web applications and microservices. Passionate about clean code, performance optimization, and modern development practices.",
+  summary: `Skilled Software Developer with over ${calculateYearsOfExperience()} years of experience in building scalable web applications and microservices, specializing in JavaScript, TypeScript, and PHP. Proficient in developing robust APIs and integrating with various databases. Adept at collaborating with frontend developers to create seamless user experiences and maintaining high-performance web applications. Experienced in React, Next.js, Vue.js, and other modern web technologies. Known for effective team collaboration, problem-solving, and delivering scalable solutions.`,
   
   socialLinks: {
     github: "https://github.com/dibakarmitra",
@@ -16,87 +23,92 @@ export const resumeData: ResumeData = {
 
   skills: {
     // languages: ["JavaScript", "TypeScript", "Python", "PHP", "SQL"],
-    frontend: ["React", "Next.js", "Vue.js", "Tailwind CSS", "Material-UI"],
-    backend: ["Node.js", "Laravel", "Django", "Express", "FastAPI"],
+    frontend: ["React", "Next.js", "Bootstrap CSS", "Tailwind CSS",],
+    backend: ["Laravel", "Django",],
     databases: ["MySQL", "PostgreSQL", "MongoDB", "Redis"],
-    tools: ["Docker", "Git", "AWS", "Linux", "Nginx"],
-    practices: ["CI/CD", "Agile", "TDD", "Microservices", "REST APIs"]
+    tools: ["VS Code", "DBeaver", "Postman", "Chrome", "Git", "Linux",],
+    practices: ["CI/CD", "Microservices", "REST APIs"]
   },
-
-  experience: [
-    {
-      company: "TalentPlace.ai",
-      position: "Senior Full Stack Developer",
-      period: "2022 - Present",
-      location: "Remote",
-      achievements: [
-        "Led development of AI-powered resume builder and job matching platform",
-        "Implemented microservices architecture reducing system latency by 40%",
-        "Integrated OpenAI APIs for advanced candidate matching and skill assessment",
-        "Managed team of 5 developers and improved deployment efficiency by 60%"
-      ]
-    },
-    {
-      company: "PRECAMPAIGN",
-      position: "Full Stack Developer",
-      period: "2020 - 2022",
-      location: "Remote",
-      achievements: [
-        "Developed enterprise-level campaign management platform",
-        "Implemented scalable domain management system",
-        "Optimized database queries reducing response time by 50%",
-        "Built real-time analytics dashboard using React and WebSocket"
-      ]
-    },
-    {
-      company: "Freelance",
-      position: "Web Developer",
-      period: "2018 - 2020",
-      location: "Remote",
-      achievements: [
-        "Developed custom web applications for various clients",
-        "Created e-commerce solutions using Laravel and Vue.js",
-        "Implemented payment gateway integrations and security features",
-        "Provided technical consultation and maintenance support"
-      ]
-    }
-  ],
 
   education: [
     {
-      degree: "Bachelor of Technology in Computer Science",
-      school: "West Bengal University of Technology",
-      period: "2014 - 2018",
-      location: "Kolkata, India",
+      degree: "Diploma in Computer Science of Technology",
+      school: "BPC Institute of Technology, Krishnagar",
+      period: "2015",
+      location: "Krishnagar, West Bengal",
       achievements: [
-        "First Class with Distinction",
-        "Technical Lead of College Programming Club",
-        "Won multiple coding competitions"
+        "Specialized in Computer Science and Technology"
+      ]
+    },
+    {
+      degree: "Higher Secondary",
+      school: "Naihati Narendra Vaidyanathan",
+      period: "2012",
+      location: "Naihati, West Bengal",
+      achievements: []
+    },
+    {
+      degree: "Secondary / Madhyamik",
+      school: "Naihati Narendra Vaidyanathan",
+      period: "2010",
+      location: "Naihati, West Bengal",
+      achievements: []
+    }
+  ],
+
+  experience: [
+    {
+      company: "Taxolawgy Inc.",
+      position: "Web Developer",
+      period: "November 2021 - Present",
+      location: "Bangalore",
+      achievements: [
+        "Developed and maintained various web applications using PHP, Laravel, Django, ReactJS, and WordPress",
+        "Collaborated with cross-functional teams to integrate user-facing elements with server-side logic",
+        "Ensured scalability, performance, and responsiveness of web applications",
+        "Collaborated closely with team members to understand project requirements and deliver tailored solutions within specified timelines"
+      ]
+    },
+    {
+      company: "Taxolawgy Inc.",
+      position: "Freelance Web Developer",
+      period: "June 2021 - November 2021",
+      location: "Bangalore",
+      achievements: [
+        "Led the development of Laravel-based applications, catering to the company's specific business requirements",
+        "Implemented responsive design principles to ensure compatibility across mobile and desktop platforms",
+        "Provided ongoing maintenance and support for existing web applications"
+      ]
+    },
+    {
+      company: "builtyoursite.com",
+      position: "Freelance Web Developer",
+      period: "Prior to 2021",
+      location: "Kolkata",
+      achievements: [
+        "Spearheaded the development of multiple web projects, including personal blogs, portfolio websites, and e-commerce platforms",
+        "Utilized diverse technologies such as HTML, CSS, Bootstrap, JavaScript, jQuery, Ajax, PHP, MySQL, Laravel, ReactJS, and MongoDB",
+        "Collaborated closely with clients to understand their needs and deliver tailored solutions within specified timelines"
       ]
     }
   ],
 
   certifications: [
     {
-      name: "AWS Certified Developer Associate",
-      issuer: "Amazon Web Services",
-      date: "2023"
-    },
-    {
-      name: "Professional Scrum Master I",
-      issuer: "Scrum.org",
-      date: "2022"
+      name: "Diploma in Computer Science of Technology",
+      issuer: "BPC Institute of Technology, Krishnagar",
+      date: "2015"
     }
   ],
 
   languages: [
     {
       name: "English",
-      level: "Professional"
+      level: "Advanced"
     },
     {
       name: "Hindi",
-      level: "Native"
+      level: "Intermediate"
     },
     {
       name: "Bengali",
