@@ -87,6 +87,17 @@ const resumeData = {
           "Utilized a diverse range of technologies such as HTML, CSS, Bootstrap, JavaScript, jQuery, Ajax, PHP, MySQL, Laravel, ReactJS, and MongoDB.",
           "Collaborated closely with clients to understand their needs and deliver tailored solutions within specified timelines."
         ]
+      },
+      {
+        title: "Senior Software Developer",
+        company: "AvantAi Fintech",
+        location: "Chennai",
+        duration: "Present",
+        responsibilities: [
+          "Developed and maintained backend systems using Laravel and PHP",
+          "Designed and implemented robust API architectures",
+          "Contributed to the technical architecture and scalability of fintech solutions"
+        ]
       }
     ],
     projects: [
