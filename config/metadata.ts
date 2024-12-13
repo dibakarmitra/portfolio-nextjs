@@ -6,7 +6,7 @@ export const metaData = {
   linkedin: "https://linkedin.com/in/dibakarmitra",
   author: "Dibakar Mitra",
   siteUrl: "https://www.dibakarmitra.com",
-  title: "Dibakar Mitra - Software Developer",
+  title: "Dibakar Mitra - Software Developer Portfolio",
   jobTitle: "Software Developer",
   description: "Professional portfolio of Dibakar Mitra, a skilled Backend Developer specializing in Laravel, Django, and API development. Crafting efficient and scalable server-side solutions for complex web applications.",
   expertise: [
