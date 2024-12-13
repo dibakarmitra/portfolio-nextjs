@@ -112,20 +112,16 @@ export default function Page() {
           {metaData.stats.yearsOfExperience} YEARS OF <span className="text-orange-500">EXPERIENCE</span>
         </h2>
         <div className="grid grid-cols-1 gap-6">
-          <ExperienceCard 
-            company={metaData.currentCompany}
-            role={metaData.jobTitle}
-            period="2023 - Present"
-            description="Leading development of innovative digital solutions. Specializing in Laravel, Django, and full-stack development with a focus on performance optimization and scalable architecture."
-            technologies={metaData.expertise}
-          />
-          <ExperienceCard 
-            company={metaData.previousCompany}
-            role="Software Developer"
-            period="2021 - 2023"
-            description="Developed and maintained multiple high-traffic web applications. Implemented responsive designs and optimized application performance."
-            technologies={["Laravel", "React", "MySQL", "API Development"]}
-          />
+          {metaData.companies.map((company, index) => (
+            <ExperienceCard 
+              key={index}
+              company={company.name}
+              role={company.role}
+              period={company.period}
+              description={company.description}
+              technologies={company.technologies}
+            />
+          ))}
         </div>
       </section>
 

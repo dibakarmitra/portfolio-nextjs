@@ -8,33 +8,48 @@ export const metaData = {
   siteUrl: "https://www.dibakarmitra.com",
   title: "Dibakar Mitra - Software Developer",
   jobTitle: "Software Developer",
-  description: "Professional portfolio of Dibakar Mitra, a skilled PHP Developer with expertise in Laravel, Django, and full-stack web development. Specializing in building robust web applications and APIs.",
+  description: "Professional portfolio of Dibakar Mitra, a skilled Backend Developer specializing in Laravel, Django, and API development. Crafting efficient and scalable server-side solutions for complex web applications.",
   expertise: [
-    "Senior Software Development",
+    "Software Development",
     "Laravel App Development",
     "RESTful API Design",
-    "Full-stack Web Development",
+    "Web Development",
     "Database Management",
+    "Service Integration"
   ],
-  currentCompany: "Wholewave Elements",
-  previousCompany: "Taxolawgy Inc.",
+  companies: [
+    {
+      name: "AvantAi Fintech",
+      period: "2024 - Present",
+      role: "Senior Software Developer",
+      description: "Architecting backend solutions for fintech platforms. Developing scalable microservices and driving innovation through strategic API design and system integration.",
+      technologies: ["Laravel", "Database", "API Development & Integration", "Fintech Solutions"]
+    },
+    {
+      name: "Taxolawgy Inc.",
+      period: "2021 - 2024",
+      role: "Software Developer",
+      description: "Building and optimizing high-performance web applications. Implementing responsive designs and delivering robust software solutions across multiple technology stacks.",
+      technologies: ["Laravel", "React", "MySQL", "Django", "API Development"]
+    }
+  ],
   projects: [
     {
       title: "TalentPlace.ai",
       description: "AI-powered resume builder and job portal",
-      image: "/projects/placeholder.svg",
+      image: "/projects/talentplace.webp",
       url: "https://talentplace.ai"
     },
     {
       title: "Jobs.TalentPlace.ai",
       description: "AI-driven job matching platform",
-      image: "/projects/placeholder.svg",
+      image: "/projects/job_talentplace.webp",
       url: "https://jobs.talentplace.ai"
     },
     {
       title: "Portfolio",
       description: "Personal Website",
-      image: "/projects/placeholder.svg",
+      image: "/projects/portfolio_nextjs.webp",
       url: "https://dibakarmitra.com"
     }
   ],
@@ -63,37 +78,37 @@ export const metaData = {
   tools: [
     {
       name: "Laravel",
-      icon: "🚀",
+      icon: "",
       color: "bg-orange-100 dark:bg-orange-800/20",
       textColor: "text-orange-600 dark:text-orange-400"
     },
     {
       name: "Django",
-      icon: "🐍",
+      icon: "",
       color: "bg-gray-100 dark:bg-gray-800/20",
       textColor: "text-gray-600 dark:text-gray-40"
     },
     {
       name: "React",
-      icon: "⚛️",
+      icon: "",
       color: "bg-blue-100 dark:bg-blue-800/20",
       textColor: "text-blue-600 dark:text-blue-400"
     },
     {
       name: "Next.js",
-      icon: "🔥",
+      icon: "",
       color: "bg-gray-100 dark:bg-gray-800/20",
       textColor: "text-black dark:text-white"
     },
     {
       name: "MySQL",
-      icon: "📈",
+      icon: "",
       color: "bg-orange-100 dark:bg-orange-800/20",
       textColor: "text-orange-600 dark:text-orange-400"
     },
     {
       name: "Git",
-      icon: "🔀",
+      icon: "",
       color: "bg-gray-100 dark:bg-gray-800/20",
       textColor: "text-gray-600 dark:text-gray-400"
     }
