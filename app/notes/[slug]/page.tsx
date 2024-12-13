@@ -99,7 +99,7 @@ export async function generateMetadata({
 
 export default async function Blog({ params }: { params: { slug: string } }) {
   const post = await fetchNoteBySlug(params.slug);
-  console.log(post);
+
   if (!post) {
     notFound();
   }
