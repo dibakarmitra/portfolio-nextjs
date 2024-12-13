@@ -20,12 +20,12 @@ A modern, responsive portfolio showcasing my professional journey as a Software 
 
 2. **Install Dependencies**
    ```bash
-   npm install
+   pnpm install
    ```
 
 3. **Run Development Server**
    ```bash
-   npm run dev
+   pnpm run dev
    ```
 
 ## Deployment
