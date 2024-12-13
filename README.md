@@ -1,115 +1,67 @@
-# Nextfolio - Modern Portfolio Template
+# Dibakar Mitra - Personal Portfolio
 
-A clean, fast, and lightweight portfolio template built with Next.js 14, Vercel, and Tailwind CSS for optimal performance and SEO.
+A modern, responsive portfolio showcasing my professional journey as a Software Developer, built with Next.js 14, TypeScript, and Tailwind CSS.
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2F1msirius%2FNextfolio)
+## About Me
 
-## Features
-
-- ⚡️ Built with Next.js 14 and TypeScript
-- 🎨 Tailwind CSS for styling
-- 📱 Fully responsive design
-- 🌙 Dark mode support
-- 📝 MDX for blog posts
-- 📊 Vercel Analytics integration
-- 📈 Speed Insights
-- 🔍 SEO optimized
-- 📰 RSS, Atom, and JSON feeds
-- 🧮 KaTeX support for mathematical equations
-- 🎥 YouTube video embedding
-- 🐦 Twitter/X embeds
-- 📨 Contact form integration
-
-## Quick Start
-
-1. **Prerequisites**
-   - [Node.js](https://nodejs.org/)
-   - [pnpm](https://pnpm.io/installation)
-
-2. **Installation**
-   ```bash
-   pnpm create next-app --example https://github.com/1msirius/Nextfolio my-portfolio
-   cd my-portfolio
-   pnpm install
-   ```
-
-3. **Development**
-   ```bash
-   pnpm dev
-   ```
-   Visit [http://localhost:3000](http://localhost:3000)
-
-## Configuration
-
-1. **Site Metadata**
-   Update `config/metadata.ts` with your information:
-   ```typescript
-   export const metaData = {
-     baseUrl: "your-site-url",
-     title: "Your Site Title",
-     name: "Your Name",
-     ogImage: "/opengraph-image.png",
-     description: "Your site description"
-   };
-
-   export const socialLinks = {
-     twitter: "your-twitter-url",
-     github: "your-github-url",
-     instagram: "your-instagram-url",
-     linkedin: "your-linkedin-url",
-     email: "mailto:your-email"
-   };
-   ```
-
-2. **Content**
-   - Blog posts: Add MDX files in `/content`
-   - Projects: Update `app/project/projectdata.tsx`
-   - Photos: Modify `app/photos/page.tsx`
-
-3. **Assets**
-   - Replace `public/profile.png` with your photo
-   - Update `public/favicon.ico`
-
-## Analytics
-
-Nextfolio comes with built-in support for [Vercel Analytics](https://vercel.com/docs/analytics) and [Speed Insights](https://vercel.com/docs/speed-insights). Simply deploy your site to Vercel and enable these features in your project settings.
+I'm a skilled Software Developer specializing in backend development, with expertise in PHP, Laravel, Django, and full-stack web technologies. My passion lies in creating scalable, efficient web solutions.
 
 ## Tech Stack
 
-- **Framework:** Next.js 14
-- **Language:** TypeScript
-- **Styling:** Tailwind CSS
-- **Content:** MDX
-- **Deployment:** Vercel
-- **Analytics:** Vercel Analytics & Speed Insights
+- **Frontend:** React, Next.js, TypeScript, Tailwind CSS
+- **Backend:** Laravel, Django, PHP
+- **Database:** MySQL, PostgreSQL, MongoDB
+- **Tools:** Git, VS Code, Postman
 
-## Dependencies
+## Key Features
 
-Key dependencies include:
-- React 18.3
-- Next.js 14.2
-- Tailwind CSS 3.4
-- MDX for content
-- KaTeX for math equations
-- Various utility libraries (date-fns, clsx)
+- ⚡️ Performant Next.js 14 implementation
+- 🎨 Responsive design with Tailwind CSS
+- 🌙 Dark mode support
+- 📱 Mobile-friendly interface
+- 🚀 Optimized for speed and SEO
 
-## Contributing
+## Projects Highlighted
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+1. **TalentPlace.ai**
+   - AI-powered resume builder and job matching platform
+   - Technologies: ReactJS, Laravel, MySQL, OpenAI
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+2. **Jobs.TalentPlace.ai**
+   - Advanced job portal for recruiters
+   - Technologies: ReactJS, Django, PostgreSQL
 
-## License
+3. **Portfolio Website**
+   - Personal showcase of professional work
+   - Technologies: Next.js, TypeScript, Tailwind CSS
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+## Quick Start
 
-## Support
+1. **Clone the Repository**
+   ```bash
+   git clone https://github.com/dibakarmitra/portfolio-nextjs.git
+   cd portfolio-nextjs
+   ```
 
-For issues and feature requests, please [open an issue](https://github.com/yourusername/your-repo/issues) on GitHub.
+2. **Install Dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Run Development Server**
+   ```bash
+   npm run dev
+   ```
+
+## Deployment
+
+Deployed on Vercel: [https://dibakarmitra.com](https://dibakarmitra.com)
+
+## Contact
+
+- **Email:** dibakarmitra10@gmail.com
+- **LinkedIn:** [/in/dibakarmitra](https://linkedin.com/in/dibakarmitra)
+- **GitHub:** [@dibakarmitra](https://github.com/dibakarmitra)
 
 ---
 

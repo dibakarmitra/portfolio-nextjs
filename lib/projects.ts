@@ -22,7 +22,7 @@ export function getProjects(page: number = 1, limit: number = 10, featured?: boo
       demoUrl: "https://talentplace.ai",
       featured: true,
       date: "2023-07-15",
-      image: "/projects/placeholder.svg"
+      image: "/projects/talentplace.webp"
     },
     {
       id: uuidv5('PRECAMPAIGN', PROJECT_NAMESPACE),
@@ -48,11 +48,11 @@ export function getProjects(page: number = 1, limit: number = 10, featured?: boo
       title: "Portfolio Website",
       description: "Personal portfolio built with Next.js, showcasing professional projects, skills, and experience with modern web technologies.",
       skills: ["Next.js", "TypeScript", "TailwindCSS", "React", "Vercel"],
-      githubUrl: "https://github.com/dibakarmitra/portfolio",
+      githubUrl: "https://github.com/dibakarmitra/portfolio-nextjs",
       demoUrl: "https://dibakarmitra.com",
       featured: true,
       date: "2024-02-15",
-      image: "/projects/placeholder.svg"
+      image: "/projects/portfolio_nextjs.webp"
     },
     {
       id: uuidv5('Jobs.TalentPlace.ai', PROJECT_NAMESPACE),
@@ -62,7 +62,7 @@ export function getProjects(page: number = 1, limit: number = 10, featured?: boo
       githubUrl: "https://github.com/dibakarmitra/jobs-talentplace",
       demoUrl: "https://jobs.talentplace.ai",
       date: "2023-11-05",
-      image: "/projects/placeholder.svg"
+      image: "/projects/job_talentplace.webp"
     }
   ];
 
