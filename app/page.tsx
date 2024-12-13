@@ -1,11 +1,23 @@
+'use client';
+
 import { metaData, socialLinks } from "config/metadata";
 import SkillCard from "@/components/skill-card";
 import ProjectCard from "@/components/project-card";
 import ExperienceCard from "@/components/experience-card";
 import BlogPost from "@/components/blog-post";
 import ContactForm from "@/components/contact-form";
+import { useRef } from 'react';
 
 export default function Page() {
+  const contactFormRef = useRef<HTMLDivElement>(null);
+
+  const scrollToContactForm = () => {
+    contactFormRef.current?.scrollIntoView({ 
+      behavior: 'smooth', 
+      block: 'start' 
+    });
+  };
+
   return (
     <div className="flex flex-col space-y-24">
       {/* Hero Section */}
@@ -28,12 +40,12 @@ export default function Page() {
               >
                 View GitHub
               </a>
-              <a 
-                href={`mailto:${socialLinks.email}`}
+              <button 
+                onClick={scrollToContactForm}
                 className="inline-flex items-center justify-center px-8 py-3 border-2 border-orange-500 text-orange-500 text-base font-semibold rounded-full hover:bg-orange-50 dark:hover:bg-orange-900/20 transition-all duration-300 transform hover:-translate-y-1"
               >
                 Contact Me
-              </a>
+              </button>
             </div>
           </div>
           <div className="relative w-48 h-48 md:w-64 md:h-64">
@@ -159,7 +171,9 @@ export default function Page() {
       </section>
 
       {/* Contact Section */}
-      <ContactForm />
+      <div ref={contactFormRef}>
+        <ContactForm />
+      </div>
     </div>
   );
 }

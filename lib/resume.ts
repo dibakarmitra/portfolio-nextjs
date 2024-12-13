@@ -11,7 +11,7 @@ export const resumeData: ResumeData = {
   socialLinks: {
     github: "https://github.com/dibakarmitra",
     linkedin: "https://linkedin.com/in/dibakarmitra",
-    twitter: "https://twitter.com/dibakarmitra",
+    twitter: "https://x.com/_mitradibakar",
   },
 
   skills: {

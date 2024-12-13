@@ -2,7 +2,7 @@
 export const metaData = {
   email: "dibakarmitra10@gmail.com",
   github: "https://github.com/dibakarmitra",
-  twitter: "https://twitter.com/dibakarmitra",
+  twitter: "https://x.com/_mitradibakar",
   linkedin: "https://linkedin.com/in/dibakarmitra",
   author: "Dibakar Mitra",
   siteUrl: "https://www.dibakarmitra.com",
@@ -42,7 +42,7 @@ export const metaData = {
   name: "Dibakar Mitra",
   ogImage: "/opengraph-image.png",
   stats: {
-    yearsOfExperience: 5,
+    yearsOfExperience: (new Date().getFullYear() - 2020),
     projectsCompleted: 10,
     clientSatisfaction: 100
   },
@@ -58,8 +58,6 @@ export const metaData = {
       subtitle: "HTML & NEXTJS",
       color: "bg-blue-400",
       textColor: "text-gray-300 dark:text-gray-500"
-      // color: "bg-gray-800 dark:bg-gray-800",
-      // textColor: "text-gray-100 dark:text-gray-100"
     }
   ],
   tools: [

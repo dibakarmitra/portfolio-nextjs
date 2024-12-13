@@ -58,11 +58,11 @@ export default function Footer() {
         <div className="flex items-center">
           <a
             className="text-md font-bold text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors group relative"
-            href={socialLinks.twitter}
+            href={socialLinks.linkedin}
             target="_blank"
             rel="noopener noreferrer"
           >
-            {metaData.title}
+            {metaData.name}
             <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-orange-500 group-hover:w-full transition-all duration-300"></span>
           </a>
           <span className="mx-2 text-gray-400">•</span>
