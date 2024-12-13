@@ -10,7 +10,7 @@ export const metadata = {
 
 export default function ResumePage() {
   return (
-    <div id="resume" className="py-8 max-w-5xl mx-auto">
+    <div id="resume" className="py-8 max-w-6xl mx-auto">
       {/* Header */}
       <div className="mb-12">
         <h1 className="text-4xl font-bold mb-4">{resumeData.name}</h1>
@@ -67,10 +67,15 @@ export default function ResumePage() {
           {resumeData.about}
         </p>
 
-        <button className="print:hidden flex items-center gap-2 px-6 py-3 bg-orange-500 text-white rounded-full hover:bg-orange-600 transition-colors">
+        <a
+          href="/pdfs/Dibakar_Mitra_Resume.pdf"
+          target="_blank"
+          download={`Dibakar_Mitra_Resume.pdf`}
+          className="print:hidden inline-flex items-center gap-2 px-6 py-3 bg-orange-500 text-white rounded-full hover:bg-orange-600 transition-colors cursor-pointer"
+        >
           <FaDownload />
           <span>Download Resume</span>
-        </button>
+        </a>
       </div>
 
       {/* Two Column Layout */}
