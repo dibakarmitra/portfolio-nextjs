@@ -4,10 +4,52 @@ import { NotePost } from '@/types/notes';
 import { metaData } from "@/config/metadata";
 import NoteLayout from "@/components/note-layout";
 import { MDXRemote } from "next-mdx-remote/rsc";
-import { getNotePosts, getNotePost } from "@/lib/posts";
+
+async function fetchNoteBySlug(slug: string): Promise<NotePost | null> {
+  try {
+    const res = await fetch(`${metaData.baseUrl}/api/notes?slug=${encodeURIComponent(slug)}`, {
+      next: { 
+        revalidate: 60, // 1-minute revalidation
+        tags: [`note-${slug}`] 
+      }
+    });
+    
+    if (!res.ok) {
+      if (res.status === 404) {
+        return null;
+      }
+      throw new Error(`Failed to fetch note: ${res.status}`);
+    }
+    
+    return res.json();
+  } catch (error) {
+    console.error('Error fetching note:', error);
+    return null;
+  }
+}
+
+async function fetchAllNotes(): Promise<{ posts: NotePost[] }> {
+  try {
+    const res = await fetch(`${metaData.baseUrl}/api/notes`, {
+      next: { 
+        revalidate: 3600,
+        tags: ['all-notes'] 
+      }
+    });
+    
+    if (!res.ok) {
+      throw new Error(`Failed to fetch notes: ${res.status}`);
+    }
+    
+    return res.json();
+  } catch (error) {
+    console.error('Error fetching all notes:', error);
+    return { posts: [] };
+  }
+}
 
 export async function generateStaticParams() {
-  const posts = await getNotePosts();
+  const { posts } = await fetchAllNotes();
   return posts.map((post: NotePost) => ({
     slug: post.slug,
   }));
@@ -18,7 +60,7 @@ export async function generateMetadata({
 }: {
   params: { slug: string };
 }): Promise<Metadata | undefined> {
-  const post = await getNotePost(params.slug);
+  const post = await fetchNoteBySlug(params.slug);
 
   if (!post) {
     return;
@@ -56,8 +98,8 @@ export async function generateMetadata({
 }
 
 export default async function Blog({ params }: { params: { slug: string } }) {
-  const post = await getNotePost(params.slug);
-
+  const post = await fetchNoteBySlug(params.slug);
+  console.log(post);
   if (!post) {
     notFound();
   }
