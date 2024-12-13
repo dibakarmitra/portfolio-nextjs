@@ -23,10 +23,10 @@ export const resumeData: ResumeData = {
 
   skills: {
     // languages: ["JavaScript", "TypeScript", "Python", "PHP", "SQL"],
-    frontend: ["React", "Next.js", "Bootstrap CSS", "Tailwind CSS",],
+    frontend: ["React", "Next.js", "Bootstrap CSS", "Tailwind CSS"],
     backend: ["Laravel", "Django",],
-    databases: ["MySQL", "PostgreSQL", "MongoDB", "Redis"],
-    tools: ["VS Code", "DBeaver", "Postman", "Chrome", "Git", "Linux",],
+    databases: ["MySQL", "PostgreSQL", "MongoDB"],
+    tools: ["VS Code", "DBeaver", "Postman", "Chrome", "Git", "Linux"],
     practices: ["CI/CD", "Microservices", "REST APIs"]
   },
 
