@@ -58,9 +58,20 @@ export const resumeData: ResumeData = {
 
   experience: [
     {
+      company: "AvantAi Fintech (Swipeware Technologies)",
+      position: "Senior Software Developer",
+      location: "Chennai",
+      period: "2024 - Present",
+      achievements: [
+        "Developed and maintained backend systems using Laravel and PHP",
+        "Designed and implemented robust API architectures",
+        "Contributed to the technical architecture and scalability of fintech solutions"
+      ]
+    },
+    {
       company: "Taxolawgy Inc.",
       position: "Web Developer",
-      period: "November 2021 - Present",
+      period: "November 2021 - 2024 July",
       location: "Bangalore",
       achievements: [
         "Developed and maintained various web applications using PHP, Laravel, Django, ReactJS, and WordPress",

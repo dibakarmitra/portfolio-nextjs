@@ -56,10 +56,21 @@ const resumeData = {
     ],
     experience: [
       {
+        title: "Senior Software Developer",
+        company: "AvantAi Fintech (Swipeware Technologies)",
+        location: "Chennai",
+        duration: "Present",
+        responsibilities: [
+          "Developed and maintained backend systems using Laravel and PHP",
+          "Designed and implemented robust API architectures",
+          "Contributed to the technical architecture and scalability of fintech solutions"
+        ]
+      },
+      {
         title: "Web Developer",
         company: "Taxolawgy Inc.",
         location: "Bangalore",
-        duration: "November 2021 - Present",
+        duration: "November 2021 - 2024",
         responsibilities: [
           "Developed and maintained various web applications using PHP, Laravel, Django, ReactJS, and WordPress.",
           "Collaborated with cross-functional teams to integrate user-facing elements with server-side logic.",
@@ -86,17 +97,6 @@ const resumeData = {
           "Spearheaded the development of multiple web projects, including personal blogs, portfolio websites, and e-commerce platforms.",
           "Utilized a diverse range of technologies such as HTML, CSS, Bootstrap, JavaScript, jQuery, Ajax, PHP, MySQL, Laravel, ReactJS, and MongoDB.",
           "Collaborated closely with clients to understand their needs and deliver tailored solutions within specified timelines."
-        ]
-      },
-      {
-        title: "Senior Software Developer",
-        company: "AvantAi Fintech",
-        location: "Chennai",
-        duration: "Present",
-        responsibilities: [
-          "Developed and maintained backend systems using Laravel and PHP",
-          "Designed and implemented robust API architectures",
-          "Contributed to the technical architecture and scalability of fintech solutions"
         ]
       }
     ],
