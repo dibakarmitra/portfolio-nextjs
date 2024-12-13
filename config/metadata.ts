@@ -78,39 +78,39 @@ export const metaData = {
   tools: [
     {
       name: "Laravel",
-      icon: "",
-      color: "bg-orange-100 dark:bg-orange-800/20",
-      textColor: "text-orange-600 dark:text-orange-400"
+      icon: "🚀",
+      color: "bg-red-100 dark:bg-red-900/30",
+      textColor: "text-red-700 dark:text-red-300"
     },
     {
       name: "Django",
-      icon: "",
-      color: "bg-gray-100 dark:bg-gray-800/20",
-      textColor: "text-gray-600 dark:text-gray-40"
+      icon: "🐍",
+      color: "bg-green-100 dark:bg-green-900/30",
+      textColor: "text-green-700 dark:text-green-300"
     },
     {
       name: "React",
-      icon: "",
-      color: "bg-blue-100 dark:bg-blue-800/20",
-      textColor: "text-blue-600 dark:text-blue-400"
+      icon: "⚛️",
+      color: "bg-blue-100 dark:bg-blue-900/30",
+      textColor: "text-blue-600 dark:text-blue-300"
     },
     {
       name: "Next.js",
-      icon: "",
-      color: "bg-gray-100 dark:bg-gray-800/20",
-      textColor: "text-black dark:text-white"
+      icon: "🔥",
+      color: "bg-gray-200 dark:bg-gray-900/30",
+      textColor: "text-gray-700 dark:text-gray-100"
     },
     {
       name: "MySQL",
-      icon: "",
-      color: "bg-orange-100 dark:bg-orange-800/20",
-      textColor: "text-orange-600 dark:text-orange-400"
+      icon: "💾",
+      color: "bg-orange-100 dark:bg-orange-900/30",
+      textColor: "text-orange-600 dark:text-orange-300"
     },
     {
       name: "Git",
-      icon: "",
-      color: "bg-gray-100 dark:bg-gray-800/20",
-      textColor: "text-gray-600 dark:text-gray-400"
+      icon: "🌿",
+      color: "bg-green-100 dark:bg-green-900/30",
+      textColor: "text-green-700 dark:text-green-300"
     }
   ]
 };

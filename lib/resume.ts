@@ -14,7 +14,7 @@ export const resumeData: ResumeData = {
   location: "Kolkata, India",
   about: "Experienced Software Developer with expertise in building scalable web applications and microservices. Passionate about clean code, performance optimization, and modern development practices.",
   summary: `Skilled Software Developer with over ${calculateYearsOfExperience()} years of experience in building scalable web applications and microservices, specializing in JavaScript, TypeScript, and PHP. Proficient in developing robust APIs and integrating with various databases. Adept at collaborating with frontend developers to create seamless user experiences and maintaining high-performance web applications. Experienced in React, Next.js, Vue.js, and other modern web technologies. Known for effective team collaboration, problem-solving, and delivering scalable solutions.`,
-  
+
   socialLinks: {
     github: "https://github.com/dibakarmitra",
     linkedin: "https://linkedin.com/in/dibakarmitra",
@@ -114,5 +114,6 @@ export const resumeData: ResumeData = {
       name: "Bengali",
       level: "Native"
     }
-  ]
+  ],
+  projects: []
 };

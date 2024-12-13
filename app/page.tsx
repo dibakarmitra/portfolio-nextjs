@@ -51,7 +51,7 @@ export default function Page() {
           <div className="relative w-48 h-48 md:w-64 md:h-64">
             <div className="absolute inset-0 rounded-full bg-gradient-to-br from-orange-400 to-orange-600 blur-2xl opacity-20 animate-pulse"></div>
             <img 
-              src="/profile.jpg" 
+              src="/profile.webp" 
               alt={metaData.name} 
               className="relative rounded-full object-cover w-full h-full shadow-2xl ring-4 ring-orange-500/20"
             />
