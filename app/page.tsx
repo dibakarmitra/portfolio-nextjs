@@ -64,7 +64,7 @@ export default function Page() {
         {metaData.skills.map((skill, index) => (
           <div 
             key={index} 
-            className="p-4 bg-gray-50/50 dark:bg-gray-900/10 rounded-xl dark:hover:bg-gray-900/20 transition-colors duration-300"
+            className="py-4 bg-gray-50/50 dark:bg-gray-900/10 rounded-xl dark:hover:bg-gray-900/20 transition-colors duration-300"
           >
             <SkillCard 
               title={skill.title}
