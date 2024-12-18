@@ -55,7 +55,7 @@ export const metaData = {
   ],
   baseUrl: "https://www.dibakarmitra.com",
   name: "Dibakar Mitra",
-  ogImage: "/opengraph-image.png",
+  ogImage: "/profile.",
   stats: {
     yearsOfExperience: (new Date().getFullYear() - 2020),
     projectsCompleted: 10,
