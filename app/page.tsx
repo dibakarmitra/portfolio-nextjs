@@ -4,7 +4,6 @@ import { metaData, socialLinks } from "config/metadata";
 import SkillCard from "@/components/skill-card";
 import ProjectCard from "@/components/project-card";
 import ExperienceCard from "@/components/experience-card";
-import BlogPost from "@/components/blog-post";
 import ContactForm from "@/components/contact-form";
 import { useRef } from 'react';
 
