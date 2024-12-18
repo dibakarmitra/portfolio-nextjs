@@ -35,8 +35,8 @@ export function getProjects(page: number = 1, limit: number = 10, featured?: boo
       image: "/projects/job_talentplace.webp"
     },
     {
-      id: uuidv5('www.TheYouthSummit.live', PROJECT_NAMESPACE),
-      title: "www.TheYouthSummit.live",
+      id: uuidv5('theYouthSummit.live', PROJECT_NAMESPACE),
+      title: "theYouthSummit.live",
       description: "Conference Website, 2024 - Developed an exclusive event website using WordPress and Elementor to promote The Youth Summit, bringing together young professionals, students, entrepreneurs, industry leaders, and decision-makers.",
       skills: ["WordPress", "Elementor", "HTML", "CSS"],
       demoUrl: "https://www.youthsummit.live",
