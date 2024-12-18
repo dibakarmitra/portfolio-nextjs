@@ -124,6 +124,26 @@ export default function ResumePage() {
               ))}
             </div>
           </section>
+
+          {/* Hobbies */}
+          <section>
+            <h3 className="text-xl font-bold mb-4">Hobbies</h3>
+            <div className="grid grid-cols-1 gap-3">
+              {resumeData.hobbies.map((hobby, index) => (
+                <div
+                  key={index}
+                  className="flex items-center p-3 bg-gradient-to-r from-gray-50 to-gray-100 dark:from-gray-800/50 dark:to-gray-800/30 rounded-lg hover:from-orange-50 hover:to-orange-100 dark:hover:from-orange-900/20 dark:hover:to-orange-900/10 transition-colors group"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="w-1.5 h-1.5 rounded-full bg-orange-500"></div>
+                    <span className="font-medium group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors">
+                      {hobby}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
         </div>
 
         {/* Right Column - Experience, Education, and Certifications */}

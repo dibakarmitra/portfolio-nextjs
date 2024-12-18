@@ -62,4 +62,5 @@ export interface ResumeData {
   certifications: ResumeCertification[];
   languages: ResumeLanguage[];
   projects: ResumeProject[];
+  hobbies: string[];
 }

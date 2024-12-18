@@ -126,5 +126,12 @@ export const resumeData: ResumeData = {
       level: "Native"
     }
   ],
-  projects: []
+  projects: [],
+  hobbies: [
+    "Web Novel Exploration",
+    "Music Appreciation",
+    "Coding",
+    "Travel",
+    "Space Exploration"
+  ]
 };
