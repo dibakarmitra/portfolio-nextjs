@@ -1,6 +1,6 @@
 // /config/metadata.ts
 export const metaData = {
-  email: "dibakarmitra10@gmail.com",
+  email: "dibakarmitra07@gmail.com",
   github: "https://github.com/dibakarmitra",
   twitter: "https://x.com/_mitradibakar",
   linkedin: "https://linkedin.com/in/dibakarmitra",

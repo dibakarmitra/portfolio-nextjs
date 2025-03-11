@@ -34,7 +34,7 @@ Deployed on Vercel: [https://dibakarmitra.com](https://dibakarmitra.com)
 
 ## Contact
 
-- **Email:** dibakarmitra10@gmail.com
+- **Email:** dibakarmitra07@gmail.com
 - **LinkedIn:** [/in/dibakarmitra](https://linkedin.com/in/dibakarmitra)
 - **GitHub:** [@dibakarmitra](https://github.com/dibakarmitra)
 
