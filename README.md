@@ -1,4 +1,4 @@
-# Dibakar Mitra - Personal Portfolio
+# Dibakar Mitra - Personal Portfolio (Next.js 14)
 
 A modern, responsive portfolio showcasing my professional journey as a Software Developer, built with Next.js 14, TypeScript, and Tailwind CSS.
 
