@@ -13,6 +13,18 @@ export function getProjects(page: number = 1, limit: number = 10, featured?: boo
   currentPage: number;
 } {
   const allProjects = [
+    // Laravel Ownership Package
+    {
+      id: uuidv5('laravel-ownership', PROJECT_NAMESPACE),
+      title: "Laravel Ownership Package",
+      description: "A package for handling model ownership with ease in Laravel.",
+      skills: ["Laravel", "PHP", "Package", "Ownership", "Eloquent"],
+      githubUrl: "https://github.com/dibakarmitra/laravel-ownership",
+      // demoUrl: "https://github.com/dibakarmitra/laravel-ownership",
+      featured: true,
+      date: "2025-09-05",
+      image: "/projects/placeholder.svg"
+    },
     {
       id: uuidv5('www.TalentPlace.ai', PROJECT_NAMESPACE),
       title: "www.TalentPlace.ai",
