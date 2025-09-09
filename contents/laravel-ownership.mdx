@@ -50,7 +50,7 @@ $project = Project::find(1);
 $user = User::find(1);
 
 // Assign ownership
-$project->assignOwner($user, 'manager');
+$project->addOwner($user, 'manager');
 
 // Check ownership
 if ($project->isOwnedBy($user)) {
