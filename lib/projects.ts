@@ -13,7 +13,17 @@ export function getProjects(page: number = 1, limit: number = 10, featured?: boo
   currentPage: number;
 } {
   const allProjects = [
-    // Laravel Ownership Package
+    {
+      id: uuidv5('laravel-dynamic-filters', PROJECT_NAMESPACE),
+      title: "Laravel Dynamic Filters",
+      description: "A package for handling dynamic filters with ease in Laravel.",
+      skills: ["Laravel", "PHP", "Package", "Filter", "Dynamic Filters", "Eloquent"],
+      githubUrl: "https://github.com/dibakarmitra/laravel-dynamic-filters",
+      // demoUrl: "https://github.com/dibakarmitra/laravel-ownership",
+      featured: true,
+      date: "2025-09-18",
+      image: "/projects/placeholder.svg"
+    },
     {
       id: uuidv5('laravel-ownership', PROJECT_NAMESPACE),
       title: "Laravel Ownership Package",
