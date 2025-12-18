@@ -126,11 +126,11 @@ const resumeData = {
         description: "Campaign App Platform, 2024 - Campaign app platform with modular architecture and domains.",
         technologies: ["Laravel", "MongoDB"]
       },
-      {
-        name: "RYW",
-        description: "E-Commerce Platform, 2022 - E-commerce platform for renting and purchasing wearables.",
-        technologies: ["PHP", "Laravel", "MySQL", "JavaScript", "jQuery", "HTML", "CSS", "Bootstrap"]
-      },
+      // {
+      //   name: "RYW",
+      //   description: "E-Commerce Platform, 2022 - E-commerce platform for renting and purchasing wearables.",
+      //   technologies: ["PHP", "Laravel", "MySQL", "JavaScript", "jQuery", "HTML", "CSS", "Bootstrap"]
+      // },
       {
         name: "Taxolowgy.com",
         description: "Business & Job Website, 2021 - Business website with features for in-line-editing business portfolio and blogging. It includes functionalities for mail-inbox and reply, direct posts to social media platforms like Facebook and Twitter, category and sub-category management, brand or manufacturer management, menu management, and advanced search filters (attribute searching). The site is fully responsive, catering to both mobile and desktop users.",

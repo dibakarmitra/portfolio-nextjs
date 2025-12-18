@@ -83,14 +83,14 @@ export function getProjects(page: number = 1, limit: number = 10, featured?: boo
       date: "2024-01-01",
       image: "/projects/placeholder.svg"
     },
-    {
-      id: uuidv5('RYW', PROJECT_NAMESPACE),
-      title: "RYW",
-      description: "E-Commerce Platform, 2022 - E-commerce platform for renting and purchasing wearables.",
-      skills: ["PHP", "Laravel", "MySQL", "JavaScript", "jQuery", "HTML", "CSS", "Bootstrap"],
-      date: "2022-01-01",
-      image: "/projects/placeholder.svg"
-    },
+    // {
+    //   id: uuidv5('RYW', PROJECT_NAMESPACE),
+    //   title: "RYW",
+    //   description: "E-Commerce Platform, 2022 - E-commerce platform for renting and purchasing wearables.",
+    //   skills: ["PHP", "Laravel", "MySQL", "JavaScript", "jQuery", "HTML", "CSS", "Bootstrap"],
+    //   date: "2022-01-01",
+    //   image: "/projects/placeholder.svg"
+    // },
     {
       id: uuidv5('www.Taxolowgy.com', PROJECT_NAMESPACE),
       title: "www.Taxolowgy.com",
