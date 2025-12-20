@@ -1,0 +1,96 @@
+---
+title: "Activity Scope – Robust Audit Trails for Laravel"
+date: "2025-12-20"
+excerpt: "A guide to using luxytra/activity-scope for flexible activity logging and audit trails in Laravel."
+tags: "Laravel, PHP, Audit Trails, Activity Logging, Laravel Package"
+---
+
+# Activity Scope – Robust Audit Trails for Laravel
+
+When building complex applications, knowing "who did what and when" is crucial. `luxytra/activity-scope` provides a robust and flexible activity logging system for Laravel Eloquent models, featuring fluent building, auto-actor resolution, and privacy-first features.
+
+## ✨ Key Features
+
+- **Fluent Activity Builder:** An expressive, chainable API for logging any event with ease.
+- **Smarter Auto-Actor:** Automatically resolves the currently authenticated user as the actor (performer) of the activity.
+- **Privacy First:** Built-in IP anonymization and recursive sensitive metadata scrubbing.
+- **Eloquent Integration:** Simple traits to gain access to relationships and zero-config auto-logging for model events.
+- **Human-Readable Logs:** An integrated `MessageBuilder` transforms raw logs into meaningful descriptions.
+
+## 🚀 Installation
+
+You can install the package via Composer:
+
+```bash
+composer require luxytra/activity-scope
+```
+
+Then, run the installation command to publish migrations and configuration:
+
+```bash
+php artisan activityscope:install
+php artisan migrate
+```
+
+## 🛠 Usage
+
+### Using the Global Helper
+The most common way to log activity is using the `activity()` helper:
+
+```php
+activity()
+    ->on($article)
+    ->did('published')
+    ->with(['scheduled_at' => now()])
+    ->log();
+```
+
+### Automatic Actor Resolution
+By default, the package automatically attaches `auth()->user()` to any activity. You can also override this manually if needed:
+
+```php
+activity()
+    ->by($admin)
+    ->on($user)
+    ->did('suspended')
+    ->log();
+```
+
+### Logging Model Changes
+Add the `LogsActivity` trait to your model for automatic auditing of `created`, `updated`, and `deleted` events:
+
+```php
+use Luxytra\ActivityScope\Traits\LogsActivity;
+
+class Post extends Model
+{
+    use LogsActivity;
+}
+```
+
+### Human-Readable Messages
+Transform any activity record into a readable string using the integrated `MessageBuilder`:
+
+```php
+$activity = Activity::first();
+echo $activity->message(); // "System published Post 'Laravel Rocks'"
+```
+
+## 🛡 Security & Events
+The package is security-ready with dedicated event logging for audits. You can also listen for activity logged events:
+
+```php
+use Luxytra\ActivityScope\Events\ActivityLogged;
+
+// In your EventServiceProvider
+ActivityLogged::class => [
+    SendActivityNotification::class,
+],
+```
+
+## Why Choose Activity Scope?
+- **Type Safety:** Built with PHP 8.2+ features and strict typing.
+- **Independence:** Modular traits (`HasActivities`, `LogsActivity`) let you choose the level of logging needed.
+- **Clean API:** The fluent builder makes your code readable and easy to maintain.
+
+Ready to add a professional audit trail to your Laravel application? Give [luxytra/activity-scope](https://github.com/luxytra/activity-scope) a try! 🚀
