@@ -53,7 +53,7 @@ export const metaData = {
       url: "https://dibakarmitra.com"
     }
   ],
-  baseUrl: "https://www.dibakarmitra.com",
+  baseUrl: process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://www.dibakarmitra.com',
   name: "Dibakar Mitra",
   ogImage: "/profile.",
   stats: {
